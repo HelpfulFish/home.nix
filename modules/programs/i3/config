@@ -163,7 +163,7 @@ bindsym $mod+ctrl+n exec --no-startup-id $brave
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # Icons: https://fontawesome.com/search?o=r&m=free
-set $ws1 "1: Browser 󰖟"
+set $ws1 "1: Browser 󰖟 "
 set $ws2 "2: Code  "
 set $ws3 "3: Misc ? "
 set $ws4 "4: Steam  "

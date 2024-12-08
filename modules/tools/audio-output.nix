@@ -5,7 +5,7 @@ with lib;
 let
 
     cfg = config.audio-output;
-    
+
     writeScriptDir = path: text:
     pkgs.writeTextFile {
       inherit text;
@@ -16,6 +16,9 @@ let
 
     audio-output = pkgs.writeShellScriptBin "audio-output" ''
       #!/bin/sh
+
+# Get sinks: `pactl list short sinks`
+# Define the sink names dynamically
 
 get_sink() {
     local sink_name=$(pactl list short sinks | awk "/$1/ {print \$2}")
@@ -34,15 +37,6 @@ get_device() {
     fi
     echo "$device_mac"
 }
-
-# Get sinks: `pactl list short sinks`
-# Define the sink names
-HEADPHONES_SINK=$(get_sink "usb")
-SPEAKERS_SINK=$(get_sink "hdmi-stereo")
-BLUETOOTH_SINK=$(get_sink "bluez_output")
-BLUETOOTH_DEVICE=$(get_device "EDIFIER")
-
-
 
 set_sink() {
     local sink_name="$1"
@@ -78,22 +72,6 @@ power_off_bluetooth() {
     bluetoothctl power off
 }
 
-discover_and_pair() {
-    echo "Starting Bluetooth discovery..."
-    bluetoothctl scan on
-    echo "Make sure your headphones are in pairing mode."
-
-    # To pair:
-    # Find your device's MAC address in the discovery output
-    # Then run: bluetoothctl pair XX:XX:XX:XX:XX:XX
-
-    # To trust the device (recommended for automatic reconnect):
-    # bluetoothctl trust XX:XX:XX:XX:XX:XX
-
-    # Stop scanning after pairing:
-    # bluetoothctl scan off
-}
-
 connect_bluetooth() {
     echo "Attempting to connect to Bluetooth headphones..."
     bluetoothctl connect "$BLUETOOTH_DEVICE"
@@ -111,21 +89,30 @@ disconnect_bluetooth() {
     zenity --notification --text="Disconnected Bluetooth headphones"
 }
 
+# Get the Bluetooth device MAC address dynamically
+BLUETOOTH_DEVICE=$(get_device "EDIFIER")
+
 case "$1" in
     --headphones)
+        HEADPHONES_SINK=$(get_sink "usb")
         set_sink "$HEADPHONES_SINK" "Headphones"
         disconnect_bluetooth
-        power_off_bluetooth 
+        power_off_bluetooth
         ;;
     --speakers)
-        # Switch to speakers
+        SPEAKERS_SINK=$(get_sink "hdmi-stereo")
         set_sink "$SPEAKERS_SINK" "Speakers"
-        disconnect_bluetooth  
-        power_off_bluetooth  
+        disconnect_bluetooth
+        power_off_bluetooth
         ;;
     --bluetooth)
-        power_on_bluetooth  
-        connect_bluetooth  
+        power_on_bluetooth
+        connect_bluetooth
+
+        # Construct the Bluetooth sink name dynamically
+        MAC_ADDRESS=$(echo "$BLUETOOTH_DEVICE" | tr ':' '_')  # Replace ":" with "_"
+        BLUETOOTH_SINK="bluez_output.$MAC_ADDRESS.1"
+
         set_sink "$BLUETOOTH_SINK" "Bluetooth Headphones"
         ;;
     *)
@@ -147,3 +134,4 @@ in
     ];
   };
 }
+

@@ -14,13 +14,7 @@ fi
 
 case "$DEFAULT_SINK" in
     *bluez_output*)
-        BATTERY_DEVICE=$(upower -e | grep -m 1 'battery')
-        if [ -n "$BATTERY_DEVICE" ]; then
-            BATTERY_STATUS=$(upower -i "$BATTERY_DEVICE" | awk '/percentage:/ {print $2}')
-        else
-            BATTERY_STATUS="No Battery"
-        fi
-        AUDIO_STATUS="$DEFAULT_PREFIX 󰂯 ($BATTERY_STATUS)"
+        AUDIO_STATUS="$DEFAULT_PREFIX 󰂯"
         ;;
     *usb*)
         AUDIO_STATUS="$DEFAULT_PREFIX "
