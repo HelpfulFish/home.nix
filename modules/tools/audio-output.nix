@@ -15,15 +15,70 @@ let
     };
 
     audio-output = pkgs.writeShellScriptBin "audio-output" ''
-      #!/bin/sh
+#!/bin/sh
 
 # Get sinks: `pactl list short sinks`
-# Define the sink names dynamically
+
+LOCKFILE="/tmp/audio-output.lock"
+LOGFILE="/tmp/audio-output.log"
+LOGGING_ENABLED=false
+
+log() {
+    if [ "$LOGGING_ENABLED" = true ]; then
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOGFILE"
+    fi
+}
+
+# Create a lock file
+acquire_lock() {
+    log "Attempting to acquire lock..."
+    exec 9>"$LOCKFILE" || exit 1
+    flock -n 9 || {
+        log "Another instance of the script is running. Exiting."
+        exit 1
+    }
+    log "Lock acquired."
+}
+
+# Release the lock file
+release_lock() {
+    log "Releasing lock."
+    flock -u 9
+    rm -f "$LOCKFILE"
+}
+trap release_lock EXIT
+
+# Parse arguments
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --logs=enable)
+            LOGGING_ENABLED=true
+            shift
+            ;;
+        --headphones|--speakers|--bluetooth)
+            TARGET="$1"
+            shift
+            ;;
+        *)
+            echo "Invalid argument: $1"
+            echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
+            exit 1
+            ;;
+    esac
+done
+
+if [ -z "$TARGET" ]; then
+    echo "Error: No target specified."
+    echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
+    exit 1
+fi
+
+acquire_lock
 
 get_sink() {
     local sink_name=$(pactl list short sinks | awk "/$1/ {print \$2}")
     if [ -z "$sink_name" ]; then
-        echo "Error: No sink found for $1" >&2
+        log "Error: No sink found for $1"
         exit 1
     fi
     echo "$sink_name"
@@ -32,7 +87,7 @@ get_sink() {
 get_device() {
     local device_mac=$(bluetoothctl devices | awk "/$1/ {print \$2}")
     if [ -z "$device_mac" ]; then
-        echo "Error: No Bluetooth device found for $1" >&2
+        log "Error: No Bluetooth device found for $1"
         exit 1
     fi
     echo "$device_mac"
@@ -41,89 +96,102 @@ get_device() {
 set_sink() {
     local sink_name="$1"
     local sink_friendly_name="$2"
-    pactl set-default-sink "$sink_name"
+    pactl set-default-sink "$sink_name" || {
+        log "Error: Failed to set default sink to $sink_name"
+        exit 1
+    }
 
-    # Move all currently playing streams to the new sink
     for INPUT in $(pactl list short sink-inputs | cut -f1); do
-        pactl move-sink-input "$INPUT" "$sink_name"
+        pactl move-sink-input "$INPUT" "$sink_name" || {
+            log "Error: Failed to move sink input $INPUT to $sink_name"
+        }
     done
 
+    log "Switched to $sink_friendly_name"
     zenity --notification --text="Switched to $sink_friendly_name"
 }
 
 power_on_bluetooth() {
-    # Check if Bluetooth is blocked and unblock if necessary
-    rfkill list bluetooth | grep -i "Soft blocked: yes" > /dev/null
-    if [ $? -eq 0 ]; then
-        echo "Unblocking Bluetooth adapter..."
-        rfkill unblock bluetooth
-    fi
-
-    # Ensure Bluetooth adapter is powered on
-    bluetoothctl show | grep "Powered: no" > /dev/null
-    if [ $? -eq 0 ]; then
-        echo "Powering on Bluetooth adapter..."
-        bluetoothctl power on
-    fi
+    log "Powering on Bluetooth adapter..."
+    rfkill unblock bluetooth || true
+    bluetoothctl power on || {
+        log "Error: Failed to power on Bluetooth"
+        exit 1
+    }
+    log "Bluetooth adapter powered on."
 }
 
 power_off_bluetooth() {
-    echo "Powering off Bluetooth adapter..."
-    bluetoothctl power off
+    log "Powering off Bluetooth adapter..."
+    bluetoothctl power off || {
+        log "Error: Failed to power off Bluetooth"
+        exit 1
+    }
+    log "Bluetooth adapter powered off."
 }
 
 connect_bluetooth() {
-    echo "Attempting to connect to Bluetooth headphones..."
-    bluetoothctl connect "$BLUETOOTH_DEVICE"
-    if [ $? -eq 0 ]; then
-        zenity --notification --text="Connected to Bluetooth headphones"
-    else
-        zenity --notification --text="Failed to connect to Bluetooth headphones"
-        exit 1
-    fi
+    log "Attempting to connect to Bluetooth headphones..."
+    local retries=5
+    local delay=1
+
+    for i in $(seq 1 $retries); do
+        bluetoothctl connect "$BLUETOOTH_DEVICE" && {
+            log "Bluetooth headphones connected successfully."
+            return 0
+        }
+        log "Connection attempt $i failed. Retrying in $delay seconds..."
+        sleep $delay
+    done
+
+    log "Error: Failed to connect to Bluetooth headphones after $retries attempts"
+    exit 1
 }
 
 disconnect_bluetooth() {
-    echo "Disconnecting Bluetooth headphones..."
-    bluetoothctl disconnect "$BLUETOOTH_DEVICE"
+    log "Disconnecting Bluetooth headphones..."
+    bluetoothctl disconnect "$BLUETOOTH_DEVICE" || log "Warning: No active connection to disconnect"
+    log "Bluetooth headphones disconnected."
     zenity --notification --text="Disconnected Bluetooth headphones"
 }
 
-# Get the Bluetooth device MAC address dynamically
 BLUETOOTH_DEVICE=$(get_device "EDIFIER")
 
-case "$1" in
+case "$TARGET" in
     --headphones)
+        log "Switching to headphones..."
         HEADPHONES_SINK=$(get_sink "usb")
         set_sink "$HEADPHONES_SINK" "Headphones"
         disconnect_bluetooth
         power_off_bluetooth
+        log "Switched to headphones."
         ;;
     --speakers)
+        log "Switching to speakers..."
         SPEAKERS_SINK=$(get_sink "hdmi-stereo")
         set_sink "$SPEAKERS_SINK" "Speakers"
         disconnect_bluetooth
         power_off_bluetooth
+        log "Switched to speakers."
         ;;
     --bluetooth)
+        log "Switching to Bluetooth headphones..."
         power_on_bluetooth
         connect_bluetooth
 
-        # Construct the Bluetooth sink name dynamically
-        MAC_ADDRESS=$(echo "$BLUETOOTH_DEVICE" | tr ':' '_')  # Replace ":" with "_"
+        MAC_ADDRESS=$(echo "$BLUETOOTH_DEVICE" | tr ':' '_')
         BLUETOOTH_SINK="bluez_output.$MAC_ADDRESS.1"
 
         set_sink "$BLUETOOTH_SINK" "Bluetooth Headphones"
+        log "Switched to Bluetooth headphones."
         ;;
     *)
-        echo "Invalid argument. Usage: $0 --headphones | --speakers | --bluetooth"
-        echo "Available sinks:"
-        pactl list short sinks
+        log "Invalid argument: $TARGET"
+        echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
         exit 1
         ;;
 esac
-
-   '';
+'';
 in
 {
   options.audio-output = { enable = mkEnableOption "Enable 'audio-output' to switch auto outputs"; };
