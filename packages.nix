@@ -20,11 +20,15 @@
     i3blocks
     lazygit
     (config.lib.nixGL.wrap mpv)
-    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "FantasqueSansMono" ]; })
     (config.lib.nixGL.wrap obsidian)
-    powerline-fonts
     tldr
     vim
     vscode
+
+    # Fonts
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.fantasque-sans-mono
+    powerline-fonts
   ];
 }
