@@ -15,7 +15,7 @@ let
     };
 
     audio-output = pkgs.writeShellScriptBin "audio-output" ''
-      #!/bin/sh
+#!/bin/sh
 
 # Get sinks: `pactl list short sinks`
 # Define the sink names dynamically
@@ -75,12 +75,21 @@ power_off_bluetooth() {
 connect_bluetooth() {
     echo "Attempting to connect to Bluetooth headphones..."
     bluetoothctl connect "$BLUETOOTH_DEVICE"
-    if [ $? -eq 0 ]; then
-        zenity --notification --text="Connected to Bluetooth headphones"
-    else
-        zenity --notification --text="Failed to connect to Bluetooth headphones"
-        exit 1
-    fi
+    local retries=5
+    local delay=2
+
+    for i in $(seq 1 $retries); do
+        if [ $? -eq 0 ]; then
+            zenity --notification --text="Connected to Bluetooth headphones"
+            return 0
+        fi
+        echo "Connection attempt $i failed. Retrying in $delay seconds..."
+        sleep $delay
+        bluetoothctl connect "$BLUETOOTH_DEVICE"
+    done
+
+    zenity --notification --text="Failed to connect to Bluetooth headphones"
+    exit 1
 }
 
 disconnect_bluetooth() {
@@ -107,6 +116,7 @@ case "$1" in
         ;;
     --bluetooth)
         power_on_bluetooth
+        # disconnect_bluetooth  # Disconnect any pre-existing connection
         connect_bluetooth
 
         # Construct the Bluetooth sink name dynamically
@@ -123,7 +133,7 @@ case "$1" in
         ;;
 esac
 
-   '';
+  '';
 in
 {
   options.audio-output = { enable = mkEnableOption "Enable 'audio-output' to switch auto outputs"; };
