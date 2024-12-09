@@ -94,13 +94,20 @@
 
   # tools: bin wrappers
   docker-down.enable = true;
-  audio-output.enable = true;
   dmenu-flatpak.enable = true;
 
+  audio-output = {
+    enable = true;
+    enableLogs = false; 
+  };
+  
   # Run the below if you get this: xdg-desktop-portal-gnome.service loaded failed
   # systemctl --user daemon-reload
 
   services.gnome-keyring.enable = true;
+
+  # cni version issues? go to: .config/cni/net.d and update <application>.conflist file: "cniVersion": "0.4.0"
+  services.podman.enable = true;
   
   # i3wm
   xsession.windowManager.i3 = {
