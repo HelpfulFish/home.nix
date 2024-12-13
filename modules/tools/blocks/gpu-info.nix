@@ -4,9 +4,12 @@ let
   gpu-info = pkgs.writeShellScriptBin "gpu-info" ''
     #!/bin/sh
 
-    GPU_TEMP=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)
-    GPU_FAN=$(nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits)
-    GPU_POWER=$(nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits)
+    GPU_METRICS=$(nvidia-smi --query-gpu=temperature.gpu,fan.speed,power.draw --format=csv,noheader,nounits)
+
+    # Parse the output
+    GPU_TEMP=$(echo "$GPU_METRICS" | awk -F', ' '{print $1}')
+    GPU_FAN=$(echo "$GPU_METRICS" | awk -F', ' '{print $2}')
+    GPU_POWER=$(echo "$GPU_METRICS" | awk -F', ' '{print $3}')
 
     [ -z "$GPU_TEMP" ] && GPU_TEMP="N/A"
     [ -z "$GPU_FAN" ] && GPU_FAN="N/A"
