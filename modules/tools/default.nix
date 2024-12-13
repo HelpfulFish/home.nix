@@ -11,5 +11,6 @@
     ./blocks/calendar.nix
     ./blocks/memory.nix
     ./blocks/bluetooth-status.nix
+    ./blocks/gpu-info.nix
   ];
 }

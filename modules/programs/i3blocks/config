@@ -14,6 +14,10 @@ signal=10
 command=memory
 interval=10
 
+[gpu-info]
+command=gpu-info
+interval=10
+
 [time]
 command=time
 interval=60
