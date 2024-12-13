@@ -1,4 +1,6 @@
-# nix-config
+<div align="center">
+  <h1 align="center">home.nix</h1>
+</div>
 
 Man page: `man home-configuration.nix`
 

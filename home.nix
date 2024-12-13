@@ -98,7 +98,7 @@
 
   audio-output = {
     enable = true;
-    enableLogs = false; 
+    enableLogs = true; 
   };
   
   # Run the below if you get this: xdg-desktop-portal-gnome.service loaded failed
