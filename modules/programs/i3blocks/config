@@ -4,30 +4,37 @@ separator_block_width=20
 command=audio-device-status
 interval=1
 signal=10
+color=#1E90FF  # DodgerBlue
 
 [volume]
 command=volume
 interval=1
 signal=10
+color=#32CD32  # LimeGreen
 
 [memory]
 command=memory
 interval=10
+color=#BA55D3  # MediumOrchid
 
 [gpu-info]
 command=gpu-info
 interval=10
+color=#FFD700  # Gold
 
 [time]
 command=time
 interval=60
+color=#FF8C00  # DarkOrange
 
 [date]
 command=calendar
 interval=once
+color=#00CED1  # DarkTurquoise
 
 [bluetooth]
 command=bluetooth-status
 interval=2
 signal=10
+color=#FFFFFF  # White
 
