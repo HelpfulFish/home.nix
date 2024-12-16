@@ -4,6 +4,8 @@
     ./audio-output.nix
     ./dmenu-flatpak.nix
 
+    ./strip-metadata.nix
+
     # i3blocks
     ./blocks/volume.nix
     ./blocks/audio-device-status.nix

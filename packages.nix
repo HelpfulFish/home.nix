@@ -27,6 +27,9 @@
     i3blocks
     dmenu
     feh
+
+    # tools
+    imagemagick # strip image metadata
    
     # Fonts
     nerd-fonts.fira-code
