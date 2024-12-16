@@ -26,6 +26,7 @@
     # i3status
     i3blocks
     dmenu
+    feh
    
     # Fonts
     nerd-fonts.fira-code

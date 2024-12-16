@@ -177,7 +177,18 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10: Top"
 
-# top will start at 10
+# 1-9 = bottom monitor
+workspace $ws1 output $botm
+workspace $ws2 output $botm
+workspace $ws3 output $botm
+workspace $ws4 output $botm
+workspace $ws5 output $botm
+workspace $ws6 output $botm
+workspace $ws7 output $botm
+workspace $ws8 output $botm
+workspace $ws9 output $botm
+
+# 10 = top monitor
 workspace $ws10 output $topm
 
 # switch to workspace
@@ -287,11 +298,15 @@ client.focused_inactive		$black	$black	$lavender		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 # gaps between windows
-gaps inner 6
-gaps outer 6
+gaps inner 5
+gaps outer 5
 
 # Monitor and display
 exec_always --no-startup-id xrandr --output DP-4 --mode 3440x1440 --rate 143.92 --primary --output DP-1 --mode 1920x1080 --rate 60 --above DP-4
+
+# wallpaper using feh. Use flag to set random bg from directory (--randomize)
+exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/car-on-roof.jpg
+# exec_always --no-startup-id feh --randomize --bg-fill /home/$USER/.wallpapers/*
 
 # Load XResources 
 exec --no-startup-id xrdb ~/.Xresources

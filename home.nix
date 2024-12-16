@@ -54,6 +54,10 @@
     file.".config/nvim".source = ./modules/programs/nvim;
     file.".config/nvim".recursive = true;
 
+    # .wallpapers
+    file.".wallpapers".source = ./modules/programs/wallpapers;
+    file.".wallpapers".recursive = true;
+
 
     # .Xresources 
 
@@ -107,7 +111,7 @@
   services.gnome-keyring.enable = true;
 
   # cni version issues? go to: .config/cni/net.d and update <application>.conflist file: "cniVersion": "0.4.0"
-  services.podman.enable = true;
+  # services.podman.enable = true;
   
   # i3wm
   xsession.windowManager.i3 = {
