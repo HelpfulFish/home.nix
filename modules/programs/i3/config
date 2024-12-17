@@ -217,7 +217,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
-assign[class="librewolf-default"] $ws1
+assign[class="LibreWolf"] $ws1
 assign[class="brave-browser"] $ws1
 assign[class="Code"] $ws2
 assign[class="firefox"] $ws2
@@ -318,3 +318,15 @@ exec --no-startup-id $obsidian
 
 # GNOME GTK (arch: /usr/lib || deb: /usr/libexec/
 exec --no-startup-id /usr/libexec/gsd-xsettings
+
+# Scratchpad
+# for_window [class="htop"] move scratchpad, floating enable, move position center
+for_window [class="dropdown"] move scratchpad, floating enable, move position center
+
+# exec --no-startup-id alacritty --class htop,htop --title htop -e htop
+exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+
+# bindsym $mod+Shift+i [class="htop"] scratchpad show
+bindsym $mod+Shift+i [class="dropdown"] scratchpad show
+
+# ----- Scratchpad end -----

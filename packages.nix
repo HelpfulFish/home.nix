@@ -30,6 +30,7 @@
 
     # tools
     imagemagick # strip image metadata
+    yt-dlp
    
     # Fonts
     nerd-fonts.fira-code
