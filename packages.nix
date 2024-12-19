@@ -16,9 +16,9 @@
     lazygit
     (config.lib.nixGL.wrap mpv)
     (config.lib.nixGL.wrap obsidian)
-    tldr
     vim
     vscode
+    tmux
 
     # i3
     i3
@@ -29,7 +29,9 @@
     feh
 
     # tools
+    cmus 
     imagemagick # strip image metadata
+    tldr
     yt-dlp
    
     # Fonts
