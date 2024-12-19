@@ -11,14 +11,14 @@ let
 
     # Decide the icon based on mute status and volume level
     if [[ "$mute" == "yes" ]]; then
-      icon="🔇"  # Muted icon
+      icon="󰝟"
     else
       if [[ "$volume" -eq 0 ]]; then
-        icon="🔈"  # Low volume
+        icon="󰕿"
       elif [[ "$volume" -le 50 ]]; then
-        icon="🔉"  # Medium volume
+        icon="󰖀"
       else
-        icon="🔊"  # High volume
+        icon="󰕾"
       fi
     fi
 

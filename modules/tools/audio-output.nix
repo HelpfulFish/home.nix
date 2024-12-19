@@ -3,10 +3,9 @@
 with lib;
 
 let
+  cfg = config.audio-output;
 
-    cfg = config.audio-output;
-
-    writeScriptDir = path: text:
+  writeScriptDir = path: text:
     pkgs.writeTextFile {
       inherit text;
       executable = true;
@@ -14,17 +13,17 @@ let
       destination = "${path}";
     };
 
-    audio-output = pkgs.writeShellScriptBin "audio-output" ''
+  audio-output = pkgs.writeShellScriptBin "audio-output" ''
 #!/bin/sh
 
 # Get sinks: `pactl list short sinks`
 
 LOCKFILE="/tmp/audio-output.lock"
 LOGFILE="/tmp/audio-output.log"
-LOGGING_ENABLED=false
+LOGGING_ENABLED=${toString cfg.enableLogs}
 
 log() {
-    if [ "$LOGGING_ENABLED" = true ]; then
+    if [ "$LOGGING_ENABLED" = 1 ]; then
         echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOGFILE"
     fi
 }
@@ -51,17 +50,13 @@ trap release_lock EXIT
 # Parse arguments
 while [ "$#" -gt 0 ]; do
     case "$1" in
-        --logs=enable)
-            LOGGING_ENABLED=true
-            shift
-            ;;
         --headphones|--speakers|--bluetooth)
             TARGET="$1"
             shift
             ;;
         *)
             echo "Invalid argument: $1"
-            echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
+            echo "Usage: $0 --headphones | --speakers | --bluetooth"
             exit 1
             ;;
     esac
@@ -69,7 +64,7 @@ done
 
 if [ -z "$TARGET" ]; then
     echo "Error: No target specified."
-    echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
+    echo "Usage: $0 --headphones | --speakers | --bluetooth"
     exit 1
 fi
 
@@ -187,14 +182,21 @@ case "$TARGET" in
         ;;
     *)
         log "Invalid argument: $TARGET"
-        echo "Usage: $0 [--logs=enable] --headphones | --speakers | --bluetooth"
+        echo "Usage: $0 --headphones | --speakers | --bluetooth"
         exit 1
         ;;
 esac
 '';
 in
 {
-  options.audio-output = { enable = mkEnableOption "Enable 'audio-output' to switch auto outputs"; };
+  options.audio-output = {
+    enable = mkEnableOption "Enable 'audio-output' to switch auto outputs.";
+    enableLogs = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable logging for the audio-output script.";
+    };
+  };
 
   config = mkIf cfg.enable {
     home.packages = [
