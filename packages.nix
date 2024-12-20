@@ -18,7 +18,6 @@
     (config.lib.nixGL.wrap obsidian)
     vim
     vscode
-    tmux
 
     # i3
     i3
@@ -33,6 +32,7 @@
     imagemagick # strip image metadata
     tldr
     yt-dlp
+    tmux
    
     # Fonts
     nerd-fonts.fira-code
