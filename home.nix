@@ -54,6 +54,10 @@
     file.".config/nvim".source = ./modules/programs/nvim;
     file.".config/nvim".recursive = true;
 
+    # .wallpapers
+    file.".wallpapers".source = ./modules/programs/wallpapers;
+    file.".wallpapers".recursive = true;
+
 
     # .Xresources 
 
@@ -94,13 +98,20 @@
 
   # tools: bin wrappers
   docker-down.enable = true;
-  audio-output.enable = true;
   dmenu-flatpak.enable = true;
 
+  audio-output = {
+    enable = true;
+    enableLogs = true; 
+  };
+  
   # Run the below if you get this: xdg-desktop-portal-gnome.service loaded failed
   # systemctl --user daemon-reload
 
   services.gnome-keyring.enable = true;
+
+  # cni version issues? go to: .config/cni/net.d and update <application>.conflist file: "cniVersion": "0.4.0"
+  # services.podman.enable = true;
   
   # i3wm
   xsession.windowManager.i3 = {

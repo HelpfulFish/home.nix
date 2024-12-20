@@ -17,13 +17,16 @@ set $mod Mod1
 # set $mod Mod4
 
 # color scheme
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $purple #b16286
-set $darkgrey #1d2021
-set $white #ffffff
+set $urgentred      #e53935
+set $white	        #bfc4e0
+set $black          #000000
+set $darkgrey       #383c4a
+set $grey           #b0b5bd
+set $mediumgrey	    #8b8b8b
+set $yellowbrown    #e1b700
+set $blacktrans     #000000b2
+set $lavender       #9192bb
+set $darklavender   #3d3973
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -91,10 +94,10 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$darkgrey" -sb "$green" -nf "$green"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$black" -sb "$darklavender" -nf "$white"
 
 # start dmenu for flatpak apps
-bindsym $mod+Shift+d exec --no-startup-id dmenu-flatpak -nb "$darkgrey" -sb "$green" -nf "$green"
+bindsym $mod+Shift+d exec --no-startup-id dmenu-flatpak -nb "$black" -sb "$darklavender" -nf "$white"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -174,7 +177,18 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10: Top"
 
-# top will start at 10
+# 1-9 = bottom monitor
+workspace $ws1 output $botm
+workspace $ws2 output $botm
+workspace $ws3 output $botm
+workspace $ws4 output $botm
+workspace $ws5 output $botm
+workspace $ws6 output $botm
+workspace $ws7 output $botm
+workspace $ws8 output $botm
+workspace $ws9 output $botm
+
+# 10 = top monitor
 workspace $ws10 output $topm
 
 # switch to workspace
@@ -203,7 +217,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
-assign[class="librewolf-default"] $ws1
+assign[class="LibreWolf"] $ws1
 assign[class="brave-browser"] $ws1
 assign[class="Code"] $ws2
 assign[class="firefox"] $ws2
@@ -262,35 +276,37 @@ bar {
         # status_command i3status --config /home/$USER/.config/i3/i3status.conf
         status_command i3blocks
         position top
-	tray_output primary
+	      tray_output primary
 
         colors {
-                # bar background color
-                background $bg
-                # text color used for blocks that do not have a color specified.
-                statusline $yellow
-                # workspaces section            
-                #                    border  backgr. text
-                focused_workspace    $yellow $darkgrey $green
-                inactive_workspace   $darkgrey $darkgrey $yellow
-                active_workspace     $darkgrey $darkgrey $yellow
-                urgent_workspace     $red $red $bg
-        }
+		    separator          $white
+		    background         $blacktrans
+		    statusline         $white
+
+    # selector border|background|text|indicator
+		focused_workspace	$darklavender       	$darklavender  	$white   	$blacktrans
+		active_workspace	$blacktrans             $blacktrans     $white  	$blacktrans
+		inactive_workspace	$blacktrans    		$blacktrans     $white		$blacktrans
+		urgent_workspace	$urgentred	    	$urgentred	$white		$blacktranskkk
+	}
 }
 
-# green gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $green $darkgrey $green $purple $darkgrey
-client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
-client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
-client.urgent           $red $red $white $red $red
+client.focused		    	$darklavender	$darklavender	$white		$lavender	$darklavender
+client.unfocused	    	$black	$black	$lavender		$darkgrey	$darkgrey
+client.focused_inactive		$black	$black	$lavender		$black		$black
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 # gaps between windows
-gaps inner 4
-gaps outer 4
+gaps inner 5
+gaps outer 5
 
 # Monitor and display
 exec_always --no-startup-id xrandr --output DP-4 --mode 3440x1440 --rate 143.92 --primary --output DP-1 --mode 1920x1080 --rate 60 --above DP-4
+
+# wallpaper using feh. Use flag to set random bg from directory (--randomize)
+exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/car-on-roof.jpg
+# exec_always --no-startup-id feh --randomize --bg-fill /home/$USER/.wallpapers/*
 
 # Load XResources 
 exec --no-startup-id xrdb ~/.Xresources
@@ -302,3 +318,15 @@ exec --no-startup-id $obsidian
 
 # GNOME GTK (arch: /usr/lib || deb: /usr/libexec/
 exec --no-startup-id /usr/libexec/gsd-xsettings
+
+# Scratchpad
+# for_window [class="htop"] move scratchpad, floating enable, move position center
+for_window [class="dropdown"] move scratchpad, floating enable, move position center
+
+# exec --no-startup-id alacritty --class htop,htop --title htop -e htop
+exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+
+# bindsym $mod+Shift+i [class="htop"] scratchpad show
+bindsym $mod+Shift+i [class="dropdown"] scratchpad show
+
+# ----- Scratchpad end -----
