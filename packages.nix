@@ -29,8 +29,10 @@
 
     # tools
     cmus
+    dunst
     flameshot
     imagemagick # strip image metadata
+    # libnotify
     tldr
     yt-dlp
     tmux

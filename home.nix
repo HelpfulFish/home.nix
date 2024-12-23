@@ -58,6 +58,10 @@
     file.".wallpapers".source = ./modules/programs/wallpapers;
     file.".wallpapers".recursive = true;
 
+    # dunst (notification)
+    file.".config/dunst".source = ./modules/programs/dunst;
+    file.".config/dunst".recursive = true;
+
 
     # .Xresources 
 
