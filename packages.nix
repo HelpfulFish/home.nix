@@ -28,11 +28,13 @@
     feh
 
     # tools
-    cmus 
+    cmus
+    flameshot
     imagemagick # strip image metadata
     tldr
     yt-dlp
     tmux
+    xclip
    
     # Fonts
     nerd-fonts.fira-code
