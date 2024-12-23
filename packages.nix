@@ -28,11 +28,15 @@
     feh
 
     # tools
-    cmus 
+    cmus
+    dunst
+    flameshot
     imagemagick # strip image metadata
+    # libnotify
     tldr
     yt-dlp
     tmux
+    xclip
    
     # Fonts
     nerd-fonts.fira-code

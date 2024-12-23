@@ -330,3 +330,16 @@ exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
 bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 
 # ----- Scratchpad end -----
+
+# Screenshot (flameshot)
+
+# Prior=pgup
+# Next=pgdn
+
+# Fullscreen (no clipboard on save)
+bindsym $mod+Shift+Prior exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
+
+# GUI to select (clipboard on save)
+bindsym $mod+Shift+Next exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
+
+# ----- Screenshot end -----
