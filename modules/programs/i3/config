@@ -319,7 +319,13 @@ exec --no-startup-id $obsidian
 # GNOME GTK (arch: /usr/lib || deb: /usr/libexec/
 exec --no-startup-id /usr/libexec/gsd-xsettings
 
-# Scratchpad
+# ----- Notification (dunst) -----
+
+exec --no-startup-id dunst &
+
+# ----- Notification end -----
+
+# ----- Scratchpad -----
 # for_window [class="htop"] move scratchpad, floating enable, move position center
 for_window [class="dropdown"] move scratchpad, floating enable, move position center
 
@@ -331,7 +337,7 @@ bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 
 # ----- Scratchpad end -----
 
-# Screenshot (flameshot)
+# ----- Screenshot (flameshot) ----- 
 
 # Prior=pgup
 # Next=pgdn
@@ -343,3 +349,4 @@ bindsym $mod+Shift+Prior exec --no-startup-id flameshot screen -p ~/Pictures/scr
 bindsym $mod+Shift+Next exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
 
 # ----- Screenshot end -----
+
