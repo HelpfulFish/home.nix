@@ -330,7 +330,8 @@ exec --no-startup-id dunst &
 for_window [class="dropdown"] move scratchpad, floating enable, move position center
 
 # exec --no-startup-id alacritty --class htop,htop --title htop -e htop
-exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+# exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown -e tmux
 
 # bindsym $mod+Shift+i [class="htop"] scratchpad show
 bindsym $mod+Shift+i [class="dropdown"] scratchpad show
