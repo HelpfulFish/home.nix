@@ -150,7 +150,7 @@ disconnect_bluetooth() {
     zenity --notification --text="Disconnected Bluetooth headphones"
 }
 
-BLUETOOTH_DEVICE=$(get_device "EDIFIER")
+BLUETOOTH_DEVICE=$(get_device "WH-1000XM4")
 
 case "$TARGET" in
     --headphones)

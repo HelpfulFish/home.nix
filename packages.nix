@@ -11,8 +11,10 @@
   home.packages = with pkgs; [
     (config.lib.nixGL.wrap anki)
     (config.lib.nixGL.wrap alacritty)
-    (config.lib.nixGL.wrap brave)
+    # (config.lib.nixGL.wrap brave)
+    brave
     fira-code
+    krita # wrap with nixGL??
     lazygit
     (config.lib.nixGL.wrap mpv)
     (config.lib.nixGL.wrap obsidian)
@@ -28,11 +30,15 @@
     feh
 
     # tools
-    cmus 
+    cmus
+    dunst
+    flameshot
     imagemagick # strip image metadata
+    # libnotify
     tldr
     yt-dlp
     tmux
+    xclip
    
     # Fonts
     nerd-fonts.fira-code

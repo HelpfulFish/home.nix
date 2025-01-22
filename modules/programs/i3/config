@@ -319,14 +319,40 @@ exec --no-startup-id $obsidian
 # GNOME GTK (arch: /usr/lib || deb: /usr/libexec/
 exec --no-startup-id /usr/libexec/gsd-xsettings
 
-# Scratchpad
+# ----- Notification (dunst) -----
+
+exec --no-startup-id dunst &
+
+# ----- Notification end -----
+
+# ----- Scratchpad -----
 # for_window [class="htop"] move scratchpad, floating enable, move position center
 for_window [class="dropdown"] move scratchpad, floating enable, move position center
 
 # exec --no-startup-id alacritty --class htop,htop --title htop -e htop
-exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+# exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
+exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown -e tmux
 
 # bindsym $mod+Shift+i [class="htop"] scratchpad show
 bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 
 # ----- Scratchpad end -----
+
+# ----- Screenshot (flameshot) ----- 
+
+# Prior=pgup
+# Next=pgdn
+
+# Fullscreen (no clipboard on save)
+bindsym $mod+Shift+Prior exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
+
+# GUI to select (clipboard on save)
+bindsym $mod+Shift+Next exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
+
+# ----- Screenshot end -----
+
+# ----- Wacom One (Drawing tabet) ----- 
+exec --no-startup-id xsetwacom --set "11" MapToOutput HEAD-0 
+exec --no-startup-id xsetwacom --set "11" Rotate half
+
+# ----- Wacom One (Drawing tabet) end ----- 
