@@ -14,7 +14,7 @@
     # (config.lib.nixGL.wrap brave)
     brave
     fira-code
-    krita # wrap with nixGL??
+    krita
     lazygit
     (config.lib.nixGL.wrap mpv)
     (config.lib.nixGL.wrap obsidian)
