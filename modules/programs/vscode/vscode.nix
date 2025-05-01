@@ -6,8 +6,8 @@ in
 {
    programs.vscode = {
     enable = true;
-    userSettings = vscodeConfig.settings;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.userSettings = vscodeConfig.settings;
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       formulahendry.auto-rename-tag
       dbaeumer.vscode-eslint

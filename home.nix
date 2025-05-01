@@ -84,11 +84,7 @@
 
   programs.htop.enable = true;
   programs.jq.enable = false;
-
-  programs.lsd = {
-    enable = true;
-    enableAliases = true;
-  };
+  programs.lsd.enable = true;
 
   programs.zsh = (pkgs.callPackage ./modules/programs/zsh.nix {}).programs.zsh;
   programs.vscode = (pkgs.callPackage ./modules/programs/vscode/vscode.nix {}).programs.vscode;

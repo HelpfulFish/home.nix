@@ -88,7 +88,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty -e tmux attach
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -159,6 +159,7 @@ set $librewolf /usr/bin/librewolf
 set $brave $HOME/.nix-profile/bin/brave --password-store=gnome-keyring
 set $obsidian $HOME/.nix-profile/bin/obsidian
 set $steam /usr/games/steam
+set $krita $HOME/.nix-profile/bin/krita --nosplash
 
 bindsym $mod+ctrl+b exec --no-startup-id $librewolf
 bindsym $mod+ctrl+n exec --no-startup-id $brave
@@ -174,7 +175,7 @@ set $ws5 "5: Games  "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9: Art 󰏫"
 set $ws10 "10: Top"
 
 # 1-9 = bottom monitor
@@ -230,6 +231,7 @@ assign[class="cs2"] $ws5
 assign[class="SDL Application"] $ws5
 assign[class="dwarfort"] $ws5
 assign[class="dota2"] $ws5
+assign[class="krita"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -311,10 +313,13 @@ exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/car-on-roof.jp
 # Load XResources 
 exec --no-startup-id xrdb ~/.Xresources
 
-# Autostart applications
+# ----- Autostart applications -----
 exec --no-startup-id $librewolf
 exec --no-startup-id $steam
 exec --no-startup-id $obsidian
+exec --no-startup-id $krita
+
+# ----- Autostart applications end -----
 
 # GNOME GTK (arch: /usr/lib || deb: /usr/libexec/
 exec --no-startup-id /usr/libexec/gsd-xsettings
