@@ -4,7 +4,16 @@ let
   wifi-status = pkgs.writeShellScriptBin "wifi-status" ''
 #!/bin/bash
 
-# Get the current active Wi-Fi connection
+# Detect click
+# 1) = left click
+# 3) = right click
+case "$BLOCK_BUTTON" in
+  1) 
+    nm-connection-editor &  # GUI alternative
+    ;;
+esac
+
+# Show current connection
 WIFI_INFO=$(nmcli -t -f ACTIVE,SSID,SIGNAL dev wifi | grep '^yes')
 
 if [ -z "$WIFI_INFO" ]; then
@@ -12,21 +21,19 @@ if [ -z "$WIFI_INFO" ]; then
   exit 0
 fi
 
-# Parse fields
 SSID=$(echo "$WIFI_INFO" | cut -d: -f2)
 SIGNAL=$(echo "$WIFI_INFO" | cut -d: -f3)
 
-# Select icon based on signal strength
 if [ "$SIGNAL" -ge 80 ]; then
-  ICON="󰤨"  # nf-md-wifi_strength_4
+  ICON="󰤨"
 elif [ "$SIGNAL" -ge 60 ]; then
-  ICON="󰤥"  # nf-md-wifi_strength_3
+  ICON="󰤥"
 elif [ "$SIGNAL" -ge 40 ]; then
-  ICON="󰤢"  # nf-md-wifi_strength_2
+  ICON="󰤢"
 elif [ "$SIGNAL" -ge 20 ]; then
-  ICON="󰤟"  # nf-md-wifi_strength_1
+  ICON="󰤟"
 else
-  ICON="󰤯"  # nf-md-wifi_strength_outline
+  ICON="󰤯"
 fi
 
 echo "$ICON $SSID ($SIGNAL%)"

@@ -1,19 +1,26 @@
 { pkgs, ... }:
 
 let
-  # Define the binary using writeShellScriptBin
   bluetooth-status = pkgs.writeShellScriptBin "bluetooth-status" ''
     #!/bin/sh
 
-if bluetoothctl show | grep -q "Powered: yes"; then
-    echo "󰂯 ON "
-else
-    echo "󰂲 OFF "
-fi
+    if [ "$BLOCK_BUTTON" = "1" ]; then
+      # Toggle Bluetooth power on left click
+      if bluetoothctl show | grep -q "Powered: yes"; then
+        bluetoothctl power off
+      else
+        bluetoothctl power on
+      fi
+    fi
 
+    # Show current Bluetooth status
+    if bluetoothctl show | grep -q "Powered: yes"; then
+      echo "󰂯 ON "
+    else
+      echo "󰂲 OFF "
+    fi
   '';
 in {
-  # Ensure the binary is added to the PATH
   home.packages = [
     bluetooth-status
   ];
