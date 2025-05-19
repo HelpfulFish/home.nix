@@ -38,3 +38,7 @@ interval=2
 signal=10
 color=#FFFFFF  # White
 
+[battery]
+command=battery-status
+interval=30
+colorr=#32CD32

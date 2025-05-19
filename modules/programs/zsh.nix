@@ -9,11 +9,8 @@
 
         # this is to workaround zsh syntax highlighting slowness on copy/paste
         # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295#issuecomment-214581607
-        initExtra = ''
+        initContent = ''
         zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-        # initialize nvm autoloader
-        [[ ! -f ~/.config/zsh/scripts/nvm.sh ]] || source ~/.config/zsh/scripts/nvm.sh
         
         # only start ssh-agent if not already running
         if [ -z "$SSH_AUTH_SOCK" ]; then
