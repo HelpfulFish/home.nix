@@ -15,32 +15,33 @@ BATTERY_INFO=$(upower -i "$BATTERY")
 PERCENTAGE=$(echo "$BATTERY_INFO" | awk '/percentage:/ {gsub("%",""); print $2}')
 CHARGING_STATE=$(echo "$BATTERY_INFO" | awk '/state:/ {print $2}')
 
-# Set icon based on state and level
+# Set Nerd Font icon based on state and level
 ICON=""
-COLOR="#FFFFFF"  # Default fallback color
+COLOR="#FFFFFF" # Not used in output, kept for compatibility
 
 if [[ "$CHARGING_STATE" == "charging" ]]; then
-    ICON="⚡"
+  ICON="" # nf-fa-plug
 elif [[ "$CHARGING_STATE" == "discharging" ]]; then
-    if [ "$PERCENTAGE" -ge 80 ]; then
-        ICON="🔋"
-    elif [ "$PERCENTAGE" -ge 60 ]; then
-        ICON="🔋"
-    elif [ "$PERCENTAGE" -ge 40 ]; then
-        ICON="🔋"
-    elif [ "$PERCENTAGE" -ge 20 ]; then
-        ICON="🔌"
-    else
-        ICON="🪫"
-    fi
+  if [ "$PERCENTAGE" -ge 80 ]; then
+    ICON="" # nf-fa-battery_full
+  elif [ "$PERCENTAGE" -ge 60 ]; then
+    ICON="" # nf-fa-battery_three_quarters
+  elif [ "$PERCENTAGE" -ge 40 ]; then
+    ICON="" # nf-fa-battery_half
+  elif [ "$PERCENTAGE" -ge 20 ]; then
+    ICON="" # nf-fa-battery_quarter
+  else
+    ICON="" # nf-fa-battery_empty
+  fi
 elif [[ "$CHARGING_STATE" == "fully-charged" ]]; then
-    ICON="✅"
+  ICON="" # Same as full battery
 fi
 
-# Output for i3blocks
-echo "$ICON $PERCENTAGE% ($CHARGING_STATE)"
-
-  '';
+# Output for i3blocks or status bar
+# echo "$ICON $PERCENTAGE% ($CHARGING_STATE)"
+echo "$ICON  $PERCENTAGE% "
+  
+'';
 in {
   # Ensure the binary is added to the PATH
   home.packages = [
