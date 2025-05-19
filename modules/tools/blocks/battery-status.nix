@@ -39,7 +39,7 @@ fi
 
 # Output for i3blocks or status bar
 # echo "$ICON $PERCENTAGE% ($CHARGING_STATE)"
-echo "$ICON  $PERCENTAGE% "
+echo "$ICON  $PERCENTAGE%"
   
 '';
 in {

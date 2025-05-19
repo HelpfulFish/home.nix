@@ -15,5 +15,6 @@
     ./blocks/bluetooth-status.nix
     ./blocks/gpu-info.nix
     ./blocks/battery-status.nix
+    ./blocks/wifi-status.nix
   ];
 }

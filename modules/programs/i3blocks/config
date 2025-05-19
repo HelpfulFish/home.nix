@@ -41,4 +41,9 @@ color=#FFFFFF  # White
 [battery]
 command=battery-status
 interval=30
-colorr=#32CD32
+color=#32CD32
+
+[wifi]
+command=wifi-status
+interval=30
+color=#FFFFFF  # White
