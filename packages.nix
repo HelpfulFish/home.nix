@@ -9,7 +9,7 @@
 
   # Packages: https://search.nixos.org/packages
   home.packages = with pkgs; [
-    anki
+    anki-bin
     # (config.lib.nixGL.wrap anki)
     (config.lib.nixGL.wrap alacritty)
     # (config.lib.nixGL.wrap brave)
