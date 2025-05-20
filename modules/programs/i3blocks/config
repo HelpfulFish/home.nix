@@ -45,5 +45,5 @@ color=#32CD32
 
 [wifi]
 command=wifi-status
-interval=16
+interval=8
 color=#FFFFFF  # White
