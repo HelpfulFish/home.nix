@@ -88,7 +88,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty -e tmux attach
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -155,7 +155,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # application constants
-set $librewolf /usr/bin/librewolf
+set $librewolf /usr/bin/firefox
 set $brave $HOME/.nix-profile/bin/brave --password-store=gnome-keyring
 set $obsidian $HOME/.nix-profile/bin/obsidian
 set $steam /usr/games/steam
@@ -218,10 +218,10 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
-assign[class="LibreWolf"] $ws1
+assign[class="libreWolf"] $ws1
 assign[class="brave-browser"] $ws1
 assign[class="Code"] $ws2
-assign[class="firefox"] $ws2
+assign[class="firefox"] $ws1
 assign[class="Anki"] $ws3
 assign[class="obsidian"] $ws3
 assign[class="Virt-manager"] $ws3
@@ -316,8 +316,6 @@ exec --no-startup-id xrdb ~/.Xresources
 # ----- Autostart applications -----
 exec --no-startup-id $librewolf
 exec --no-startup-id $steam
-exec --no-startup-id $obsidian
-exec --no-startup-id $krita
 
 # ----- Autostart applications end -----
 

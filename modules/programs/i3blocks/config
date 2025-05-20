@@ -34,7 +34,21 @@ color=#00CED1  # DarkTurquoise
 
 [bluetooth]
 command=bluetooth-status
-interval=2
-signal=10
+interval=5
+signal=1
 color=#FFFFFF  # White
 
+[battery]
+command=battery-status
+interval=32
+color=#32CD32  # LimeGreen
+
+[wifi]
+command=wifi-status
+interval=7
+color=#FFFFFF  # White
+
+[flight-mode]
+command=flight-mode
+interval=6
+color=#FFD700  # Gold

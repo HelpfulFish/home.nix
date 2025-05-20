@@ -23,7 +23,7 @@ case "$DEFAULT_SINK" in
         AUDIO_STATUS="$DEFAULT_PREFIX 󰓃"
         ;;
     *)
-        AUDIO_STATUS="$DEFAULT_PREFIX 🔊 Unknown"
+        AUDIO_STATUS="$DEFAULT_PREFIX 🔊"
         ;;
 esac
 
