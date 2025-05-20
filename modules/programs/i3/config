@@ -218,7 +218,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
-assign[class="LibreWolf"] $ws1
+assign[class="libreWolf"] $ws1
 assign[class="brave-browser"] $ws1
 assign[class="Code"] $ws2
 assign[class="firefox"] $ws1
@@ -302,9 +302,6 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # gaps between windows
 gaps inner 5
 gaps outer 5
-
-# NetworkManager
-exec --no-startup-id nm-applet
 
 # Monitor and display
 exec_always --no-startup-id xrandr --output DP-4 --mode 3440x1440 --rate 143.92 --primary --output DP-1 --mode 1920x1080 --rate 60 --above DP-4
