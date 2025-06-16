@@ -9,35 +9,34 @@
 
   # Packages: https://search.nixos.org/packages
   home.packages = with pkgs; [
-    anki-bin
     # (config.lib.nixGL.wrap anki)
     (config.lib.nixGL.wrap alacritty)
     # (config.lib.nixGL.wrap brave)
-    brave
+    # brave
     fira-code
-    krita
+    # krita
     lazygit
-    (config.lib.nixGL.wrap mpv)
-    (config.lib.nixGL.wrap obsidian)
+    # (config.lib.nixGL.wrap mpv)
+    # (config.lib.nixGL.wrap obsidian)
     vim
     vscode
 
     # i3
-    i3
-    i3lock
+    # i3
+    # i3lock
     # i3status
-    i3blocks
+    # i3blocks
     dmenu
     feh
 
     # tools
-    cmus
+    # cmus
     dunst
-    flameshot
-    imagemagick # strip image metadata
+    # flameshot
+    # imagemagick # strip image metadata
     # libnotify
     tldr
-    yt-dlp
+    # yt-dlp
     tmux
     xclip
    
