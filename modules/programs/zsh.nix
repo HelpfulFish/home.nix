@@ -9,7 +9,7 @@
 
         # this is to workaround zsh syntax highlighting slowness on copy/paste
         # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295#issuecomment-214581607
-        initExtra = ''
+        initContent = ''
         zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
         # initialize nvm autoloader
