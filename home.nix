@@ -18,8 +18,8 @@
     homeDirectory = builtins.getEnv "HOME";
 
     sessionVariables = {
-      # EDITOR = "code";
-      EDITOR = "nvim";
+      EDITOR = "code";
+      # EDITOR = "nvim";
 
       NVM_DIR="$HOME/.config/nvm";
       NVM_DIRECTORY="$HOME/Documents/nvm";

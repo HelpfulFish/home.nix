@@ -20,6 +20,7 @@
     # (config.lib.nixGL.wrap obsidian)
     vim
     vscode
+    zig
 
     # i3
     # i3

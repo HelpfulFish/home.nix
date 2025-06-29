@@ -1,5 +1,6 @@
 {
   settings = {
+    "editor.formatOnSave" = true;
     "json.schemaDownload.enable" = true;
     "telemetry.telemetryLevel" = "off";
     "gitlens.telemetry.enabled" = false;
