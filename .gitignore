@@ -8,7 +8,7 @@ result-*
 
 # Environment configuration (contains user-specific paths)
 local.conf
-flake.nix  # To avoid PII (username and home directory) - use flake.template.nix for commits
+flake.nix  
 
 # Editor files
 .vscode/
