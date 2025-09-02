@@ -10,11 +10,11 @@
   home.packages = with pkgs; [
     # System monitoring
     htop
-    btop
+    # btop
     
     # File management
     lsd  # Better ls
-    fd   # Better find
+    # fd   # Better find
     ripgrep  # Better grep
     
     # Terminal utilities
@@ -22,8 +22,8 @@
     xclip  # Clipboard utility
     
     # Archive and file manipulation
-    unzip
-    zip
+    # unzip
+    # zip
     imagemagick  # Image manipulation (for metadata stripping)
     
     # Network utilities
@@ -35,10 +35,10 @@
     # yt-dlp  # YouTube downloader
     
     # System information
-    neofetch
+    # neofetch
     
     # Process management
-    killall
+    # killall
     
     # Text processing
     jq  # JSON processor

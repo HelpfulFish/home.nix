@@ -15,7 +15,7 @@
     # Version control
     git
     lazygit
-    gh  # GitHub CLI
+    # gh  # GitHub CLI
     
     # Languages and runtimes
     # nodejs
@@ -35,11 +35,11 @@
     # pkg-config
     
     # Language servers and formatters
-    nil  # Nix LSP
-    nixfmt-rfc-style
+    # nil  # Nix LSP
+    # nixfmt-rfc-style
     
     # Documentation and help
     tldr
-    manix  # Search Nix documentation
+    # manix  # Search Nix documentation
   ];
 }

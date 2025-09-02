@@ -123,31 +123,6 @@
       };
     };
 
-    # Development shells for each system
-    devShells = forAllSystems (system: let
-      pkgs = mkPkgs system;
-    in {
-      default = pkgs.mkShell {
-        name = "home-manager-dev";
-        buildInputs = with pkgs; [
-          git
-          nixfmt-rfc-style
-          nil # Nix language server
-          nix-tree
-          nix-output-monitor
-        ];
-        shellHook = ''
-          echo "🏠 Home Manager development environment"
-          echo "📁 User: ${userConfig.username}"
-          echo "🏠 Home: ${userConfig.homeDirectory}"
-          echo ""
-          echo "Available commands:"
-          echo "  home-manager switch --flake .#${userConfig.username}"
-          echo "  nix fmt                    # Format nix files"
-          echo "  nix flake check           # Check flake"
-        '';
-      };
-    });
 
     # Custom packages (useful for sharing)
     packages = forAllSystems (system: let
