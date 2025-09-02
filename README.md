@@ -1,6 +1,14 @@
 # Home Manager Configuration
 
-A comprehensive Nix Home Manager configuration with i3 window manager, development tools
+A comprehensive Nix Home Manager configuration with i3 window manager, development tools, and custom scripts.
+
+> **⚠️ IMPORTANT FIRST STEP:** After cloning this repository, you must copy the template:
+>
+> ```bash
+> cp flake.template.nix flake.nix
+> ```
+>
+> Then edit `flake.nix` to replace `<your_username>` with your actual username. The `flake.nix` file is gitignored to avoid PII.
 
 Man page: `man home-configuration.nix`
 
@@ -66,6 +74,11 @@ nix-env -iA nixgl.auto.nixGLNvidia
 
 ```bash
 git clone --depth 1 https://github.com/HelpfulFish/home.nix.git ~/.config/home-manager
+cd ~/.config/home-manager
+
+# REQUIRED: Copy the template and customize it
+cp flake.template.nix flake.nix
+# Edit flake.nix to replace <your_username> with your actual username
 ```
 
 ## Basic Usage
@@ -155,7 +168,9 @@ nix flake check --all-systems
 
 ## Configuration Structure
 
-- `flake.nix` - Main flake configuration with multi-system support
+- `flake.template.nix` - Template flake configuration (tracked in git)
+- `flake.nix` - Your personal flake configuration (gitignored, copy from template)
+- `local.conf` - User-specific settings (gitignored)
 - `home/` - Home Manager modules organized by function:
   - `packages/` - Package definitions (desktop, development, system)
   - `programs/` - Program configurations (shell, editors, development, desktop)
