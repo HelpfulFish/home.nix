@@ -29,9 +29,9 @@
     # i3
     # i3lock
     # i3status
-    # i3blocks
-    # dmenu
-    # feh
+    i3blocks
+    dmenu
+    feh
 
     # tools
     # cmus
