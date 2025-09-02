@@ -1,5 +1,8 @@
 {
-  settings = {
+  pkgs,
+  ...
+}: let
+  vscodeSettings = {
     "editor.formatOnSave" = true;
     "json.schemaDownload.enable" = true;
     "telemetry.telemetryLevel" = "off";
@@ -18,10 +21,10 @@
     "explorer.confirmDragAndDrop" = false;
     "explorer.confirmDelete" = false;
     "[typescriptreact]" = {
-    "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
     };
     "[json]" = {
-    "editor.defaultFormatter" = "vscode.json-language-features";
+      "editor.defaultFormatter" = "vscode.json-language-features";
     };
     "vim.handleKeys" = {
       "<C-p>" = false; # ctrl+p use vscode default to find file
@@ -38,5 +41,27 @@
         ];
       }
     ];
+  };
+in {
+  programs.vscode = {
+    enable = true;
+    
+    # Use the new profile-based structure
+    profiles.default = {
+      userSettings = vscodeSettings;
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        formulahendry.auto-rename-tag
+        dbaeumer.vscode-eslint
+        esbenp.prettier-vscode
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "vim";
+          publisher = "vscodevim";
+          version = "1.27.3";
+          sha256 = "sha256-zshuABicdkT52Nqj1L2RrfMziBRgO+R15fM32SCnyXI=";
+        }
+      ];
+    };
   };
 }

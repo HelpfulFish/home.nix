@@ -4,7 +4,7 @@ let
   strip-metadata = pkgs.writeShellScriptBin "strip-metadata" ''
     #!/bin/sh
 
-TARGET_DIR="/home/$USER/.config/home-manager/modules/programs/wallpapers"
+TARGET_DIR="/home/$USER/.config/home-manager/config/wallpapers"
 
 if [ ! -d "$TARGET_DIR" ]; then
   echo "Directory $TARGET_DIR does not exist."
