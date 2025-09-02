@@ -32,6 +32,7 @@
     i3blocks
     dmenu
     feh
+    gnome-keyring
 
     # tools
     # cmus

@@ -69,6 +69,7 @@
         shellAliases = {
             lg="lazygit";
             lzd="lazydocker";
+            code="code --password-store=\"gnome-libsecret\"";
             # code="nvim";
             # docker="podman";
         };
