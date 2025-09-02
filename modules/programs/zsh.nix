@@ -68,6 +68,7 @@
 
         shellAliases = {
             lg="lazygit";
+            lzd="lazydocker";
             # code="nvim";
             # docker="podman";
         };

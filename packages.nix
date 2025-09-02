@@ -16,23 +16,26 @@
     fira-code
     # krita
     lazygit
+    # lazydocker
+    joplin-desktop
     # (config.lib.nixGL.wrap mpv)
     # (config.lib.nixGL.wrap obsidian)
     vim
     vscode
-    zig
+    (config.lib.nixGL.wrap ollama)
+    # zig
 
     # i3
     # i3
     # i3lock
     # i3status
     # i3blocks
-    dmenu
-    feh
+    # dmenu
+    # feh
 
     # tools
     # cmus
-    dunst
+    # dunst
     # flameshot
     # imagemagick # strip image metadata
     # libnotify
