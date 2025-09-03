@@ -8,7 +8,6 @@ result-*
 
 # Environment configuration (contains user-specific paths)
 local.conf
-flake.nix  
 
 # Editor files
 .vscode/

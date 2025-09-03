@@ -37,4 +37,9 @@
       # inactiveInterval = 10;  # Lock after 10 minutes
     };
   };
+
+  home.sessionVariables = {
+    # Set Qt platform theme to KDE for better integration
+    QT_QPA_PLATFORMTHEME=kde;
+  };
 }
