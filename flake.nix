@@ -28,12 +28,12 @@
     ...
   } @ inputs: let
     # Supported systems
-    systems = [ "x86_64-linux" "aarch64-linux" ];
+    systems = [ "x86_64-linux" ];
     
     # Helper function to generate configs for all systems
     forAllSystems = nixpkgs.lib.genAttrs systems;
     
-    # User configuration - loads from local.conf or uses defaults
+    # User configuration
     userConfig = {
       username = "<your_username>"; # <-- Replace with your actual username
       homeDirectory = "/home/<your_username>"; # <-- Replace with your actual home directory
@@ -95,31 +95,9 @@
   in {
     # Home Manager configurations
     homeConfigurations = {
-      # Main configuration using settings from local.conf
+      # Main configuration
       "${userConfig.username}" = mkHomeConfiguration {
         system = "x86_64-linux";
-      };
-      
-      # Alias for the main configuration
-      default = mkHomeConfiguration {
-        system = "x86_64-linux";
-      };
-
-      # Minimal configuration example
-      "${userConfig.username}-minimal" = mkHomeConfiguration {
-        system = "x86_64-linux";
-        modules = [
-          {
-            # Override to disable desktop environment
-            programs.i3.enable = nixpkgs.lib.mkForce false;
-            home.packages = [];
-          }
-        ];
-      };
-      
-      # Multi-architecture examples
-      "${userConfig.username}-aarch64" = mkHomeConfiguration {
-        system = "aarch64-linux";
       };
     };
 
@@ -130,23 +108,12 @@
     in {
       # Default package is the home configuration activation package
       default = self.homeConfigurations.${userConfig.username}.activationPackage;
-      
-      # Example: You can add custom packages here
-      # my-script = pkgs.writeShellScript "my-script" "echo Hello World";
     });
 
     # Apps for `nix run`
     apps = forAllSystems (system: {
       default = {
         type = "app";
-        program = "${self.homeConfigurations.${userConfig.username}.activationPackage}/activate";
-        meta = {
-          description = "Activate the Home Manager configuration";
-        };
-      };
-      
-      activate = {
-        type = "app"; 
         program = "${self.homeConfigurations.${userConfig.username}.activationPackage}/activate";
         meta = {
           description = "Activate the Home Manager configuration";
