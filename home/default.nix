@@ -31,6 +31,30 @@
       
       # Nix configuration
       NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+
+      # Qt theming - Force KDE/Plasma style for Qt applications
+      # QT_QPA_PLATFORMTHEME = "kde";
+      
+      # # Additional Qt theming variables
+      # QT_STYLE_OVERRIDE = "breeze";  # Use Breeze style as fallback
+      
+      # # GTK theming
+      # GTK_THEME = "Adwaita:dark";    # Force dark theme for GTK applications
+      
+      # # XSettings for theme coordination
+      # QT_AUTO_SCREEN_SCALE_FACTOR = "0";  # Disable automatic scaling
+      
+      # # Ensure QT apps respect the system theme
+      # QT_QPA_PLATFORM = "xcb";      # Use X11 backend (important for i3wm)
+      
+      # # Additional variables for complete theming support
+      # QT_SELECT = "5";              # Prefer Qt5 when available
+      # QT_QPA_PLATFORMTHEME_5 = "kde"; # Explicitly set for Qt5
+      # QT_QPA_PLATFORMTHEME_6 = "kde"; # Explicitly set for Qt6
+      # QT5_PLATFORM_THEME = "kde";    # Alternative Qt5 variable
+      
+      # # Ensure configuration tools are available
+      # QT_QPA_PLATFORMTHEME_CONFIG = "qt5ct:qt6ct";
     };
 
     sessionPath = [
