@@ -2,7 +2,7 @@
 
 let
   # Define the binary using writeShellScriptBin
-  time = pkgs.writeShellScriptBin "time" ''
+  current-time = pkgs.writeShellScriptBin "current-time" ''
     #!/bin/sh
 
     current_time=$(date +"%I:%M %p")
@@ -11,7 +11,7 @@ let
 in {
   # Ensure the binary is added to the PATH
   home.packages = [
-    time
+    current-time
   ];
 }
 

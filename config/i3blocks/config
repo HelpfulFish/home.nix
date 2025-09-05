@@ -23,7 +23,7 @@ interval=10
 color=#FFD700  # Gold
 
 [time]
-command=time
+command=current-time
 interval=60
 color=#FF8C00  # DarkOrange
 

@@ -120,4 +120,9 @@
 
   # Font configuration
   fonts.fontconfig.enable = true;
+
+  # Enable custom utilities
+  audio-output.enable = true;
+  docker-down.enable = true;
+  dmenu-flatpak.enable = true;
 }
