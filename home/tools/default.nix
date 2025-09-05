@@ -1,18 +1,9 @@
 {
   imports = [
-    # i3blocks scripts
-    ./blocks/volume.nix
-    ./blocks/audio-device-status.nix
-    ./blocks/time.nix
-    ./blocks/calendar.nix
-    ./blocks/memory.nix
-    ./blocks/bluetooth-status.nix
-    ./blocks/gpu-info.nix
+    # i3blocks scripts (always enabled, simple pattern)
+    ./blocks
     
-    # System utilities
-    ./utilities/strip-metadata.nix
-    ./utilities/docker-down.nix
-    ./utilities/audio-output.nix
-    ./utilities/dmenu-flatpak.nix
+    # System utilities (with enable options)
+    ./utilities
   ];
 }
