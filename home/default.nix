@@ -9,11 +9,20 @@
   ...
 }: {
   imports = [
-    ./programs
-    ./services
+    # Core system packages (CLI tools, utilities)
     ./packages
-    # ./hardware  # Temporarily disabled due to nixGL issues
+    
+    # Program configurations (shell, editors, development, desktop)
+    ./programs
+    
+    # System services (keyring, notifications, etc.)
+    ./services
+    
+    # Custom tools and scripts (i3blocks, utilities)
     ./tools
+    
+    # Hardware-specific configurations (temporarily disabled)
+    # ./hardware  # Disabled due to nixGL issues
   ];
 
   # Basic home configuration

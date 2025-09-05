@@ -7,15 +7,20 @@
   ...
 }: {
   imports = [
-    ./desktop.nix
-    ./development.nix
+    # Core system packages and utilities
     ./system.nix
+    
+    # Development tools and languages
+    ./development.nix
+    
+    # Desktop applications and GUI tools
+    ./desktop.nix
   ];
 
-  # Enable font configuration
+  # Global font configuration
   fonts.fontconfig.enable = true;
 
-  # Session path additions
+  # Global session path additions
   home.sessionPath = [
     "$HOME/bin"
     "$HOME/.local/bin"

@@ -27,16 +27,14 @@
     nixgl,
     ...
   } @ inputs: let
-    # Supported systems
+    # System configuration
     systems = [ "x86_64-linux" ];
-    
-    # Helper function to generate configs for all systems
     forAllSystems = nixpkgs.lib.genAttrs systems;
     
     # User configuration
     userConfig = {
-      username = "<your_username>"; # <-- Replace with your actual username
-      homeDirectory = "/home/<your_username>"; # <-- Replace with your actual home directory
+      username = "your_username";  # <-- Change this to your desired username
+      homeDirectory = "/home/your_username"; # <-- Change this to your desired home directory
     };
     
     # Helper function to create pkgs for a system
@@ -78,7 +76,7 @@
         };
         
         # Custom library functions
-        myLib = import ./lib { 
+        myLib = import ./lib/minimal.nix { 
           inherit (nixpkgs) lib; 
           inherit pkgs; 
         };
