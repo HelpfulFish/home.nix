@@ -3,8 +3,8 @@
 
 {
   home.packages = with pkgs; [
-    # Node.js and package managers
-    nodejs
+    # Node.js and package managers (v20 LTS for Copilot.lua compatibility)
+    nodejs_20
     yarn
     # pnpm              # Alternative package manager (uncomment if needed)
     
@@ -14,12 +14,8 @@
     nodePackages.eslint
     nodePackages.prettier
     nodePackages.eslint_d
+    
   ];
-
-  home.sessionVariables = {
-    # Node Version Manager directory (if using nvm alongside nix)
-    NVM_DIR = "$HOME/.config/nvm";
-  };
 
   # Node.js development aliases
   programs.zsh.shellAliases = {   

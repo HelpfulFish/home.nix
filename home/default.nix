@@ -42,9 +42,6 @@
     # Nix configuration
     NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
     
-    # Node.js/JavaScript development
-    NVM_DIR = "$HOME/.config/nvm";
-    
     # Qt theming (uncomment if needed)
     # QT_QPA_PLATFORMTHEME = "kde";
     # QT_STYLE_OVERRIDE = "breeze";

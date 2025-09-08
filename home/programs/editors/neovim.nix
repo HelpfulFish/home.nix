@@ -27,7 +27,8 @@
       nodePackages.typescript
       
       # Additional language servers (uncomment as needed)
-      # nil                     # Nix LSP
+      nil                     # Nix LSP
+      nixpkgs-fmt            # Nix formatter
       # python3Packages.python-lsp-server  # Python LSP
       # rust-analyzer           # Rust LSP
     ];
@@ -80,6 +81,10 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
+          
+          # GitHub Copilot
+          copilot-lua
+          CopilotChat-nvim
           
           # Plugins with custom names
           { name = "LuaSnip"; path = luasnip; }
@@ -178,14 +183,15 @@
           html
           css
           json
+          scss
           
           # Other languages (uncomment as needed)
-          # nix
+          nix
           # python
           # rust
-          # markdown
-          # yaml
-          # toml
+          markdown
+          yaml
+          toml
         ])).dependencies;
       };
     in

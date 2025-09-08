@@ -15,9 +15,6 @@
     initContent = ''
       zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-      # Initialize nvm autoloader
-      [[ ! -f ~/.config/zsh/scripts/nvm.sh ]] || source ~/.config/zsh/scripts/nvm.sh
-      
       # SSH agent management
       if [ -z "$SSH_AUTH_SOCK" ]; then
           eval $(ssh-agent) > /dev/null
