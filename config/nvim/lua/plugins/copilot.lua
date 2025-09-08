@@ -7,13 +7,16 @@ return {
     event = "BufReadPost",
     opts = {
       suggestion = {
-        enabled = not vim.g.ai_cmp,
+        enabled = true,  -- Force enable for inline suggestions
         auto_trigger = true,
-        hide_during_completion = vim.g.ai_cmp,
+        debounce = 75,   -- Faster triggering
         keymap = {
           accept = "<C-J>", -- Custom accept key
+          accept_word = false,
+          accept_line = false,
           next = "<M-]>",
           prev = "<M-[>",
+          dismiss = "<C-]>",
         },
       },
       panel = { enabled = false },
