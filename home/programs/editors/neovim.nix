@@ -112,6 +112,36 @@
             -- fallback to download
             fallback = true,
           },
+          performance = {
+            rtp = {
+              -- Disable help tag generation to avoid Nix store write errors
+              disabled_plugins = {
+                "gzip",
+                "man",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "shada",
+                "spellfile",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+              },
+            },
+          },
+          install = {
+            -- Don't install missing plugins (all managed by Nix)
+            missing = false,
+          },
+          change_detection = {
+            -- Don't check for config changes
+            enabled = false,
+          },
+          checker = {
+            -- Don't check for plugin updates
+            enabled = false,
+          },
           spec = {
             { "LazyVim/LazyVim", import = "lazyvim.plugins" },
             -- Fix LazyVim for Nix

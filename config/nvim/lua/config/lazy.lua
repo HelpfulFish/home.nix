@@ -1,3 +1,15 @@
+-- LazyVim configuration for Nix-managed setup
+-- This file is overridden by the Nix configuration in neovim.nix
+-- Keeping this file for reference and local non-Nix setups
+
+-- Check if we're in a Nix-managed environment
+if vim.env.NIX_STORE then
+  -- In Nix environment, plugins are already loaded
+  -- Just set up LazyVim without plugin management
+  return
+end
+
+-- Standard LazyVim setup for non-Nix environments
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
