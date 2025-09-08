@@ -107,17 +107,17 @@ home-manager switch
 
    ```nix
    userConfig = {
-     username = "your-actual-username"; # <-- Replace with your actual username
-     homeDirectory = "/home/your-actual-username"; # <-- Replace with your actual home directory
+     username = "your_username"; # <-- Replace with your actual username
+     homeDirectory = "/home/your_username"; # <-- Replace with your actual home directory
    };
    ```
 
 2. **Switch to the configuration**:
    ```bash
-   home-manager switch --flake .#your-actual-username
+   home-manager switch --flake .#your_username
    ```
 
-**Note:** Replace `your-actual-username` with your real username throughout this README.
+**Note:** Replace `your_username` with your real username throughout this README.
 
 ### Updating Packages
 
@@ -130,7 +130,7 @@ Or with flakes:
 
 ```bash
 nix flake update
-home-manager switch --flake .#your-actual-username
+home-manager switch --flake .#your_username
 ```
 
 ### Clean Up Nix Store
@@ -202,24 +202,24 @@ cd ~/.config/home-manager
 # Edit the userConfig section in flake.nix to replace <your_username> placeholders
 
 # 3. Apply the configuration
-home-manager switch --flake .#your-actual-username
+home-manager switch --flake .#your_username
 ```
 
 ### Daily Usage
 
 ```bash
 # Apply configuration changes
-home-manager switch --flake .#your-actual-username
+home-manager switch --flake .#your_username
 
 # Use minimal configuration
-home-manager switch --flake .#your-actual-username-minimal
+home-manager switch --flake .#your_username-minimal
 
 # Update inputs
 nix flake update
 
 # Rollback to previous generation
 home-manager generations
-home-manager switch --flake .#your-actual-username --generation <generation-number>
+home-manager switch --flake .#your_username --generation <generation-number>
 ```
 
 ### Development Workflow
@@ -235,7 +235,7 @@ nix fmt
 nix flake check --all-systems
 
 # Build without switching
-nix build .#homeConfigurations.your-actual-username.activationPackage
+nix build .#homeConfigurations.your_username.activationPackage
 
 # Show flake structure
 nix flake show

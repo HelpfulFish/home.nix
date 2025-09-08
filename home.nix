@@ -29,7 +29,7 @@
   programs.zsh.shellAliases = {
     # Directory shortcuts
     projects = "cd ~/projects";
-    home-manager = "cd ~/.config/home-manager";
+    dotfiles = "cd ~/.config/home-manager";
     
     # Development shortcuts  
     dev = "cd ~/development";
