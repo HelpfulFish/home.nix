@@ -6,23 +6,72 @@
   nixgl,
   ...
 }: {
-  imports = [
-    # Core system packages and utilities
-    ./system.nix
+  home.packages = with pkgs; [
+    # === SYSTEM UTILITIES ===
+    tmux
+    xclip             # Clipboard utility for X11
+    imagemagick       # Image manipulation (for metadata stripping)
+    libnotify         # Desktop notifications
     
-    # Development tools and languages
-    ./development.nix
+    # === DEVELOPMENT TOOLS ===
+    vscode
+    lazygit
+    tldr
     
-    # Desktop applications and GUI tools
-    ./desktop.nix
+    # === DESKTOP APPLICATIONS ===
+    alacritty
+    joplin-desktop
+    ollama            # AI and ML
+    
+    # === WINDOW MANAGER & DESKTOP ===
+    i3blocks
+    dmenu
+    feh               # Image viewer and wallpaper setter
+    dunst             # Notification daemon
+    flameshot         # Screenshot tool
+    gnome-keyring     # Keyring management
+    
+    # === OPTIONAL PACKAGES (uncomment as needed) ===
+    # System monitoring
+    # htop
+    # btop              # Alternative to htop
+    
+    # Archives and file manipulation
+    # unzip             # Archive extraction
+    # zip               # Archive creation
+    
+    # Network utilities
+    # curl
+    # wget
+    
+    # Media tools
+    # cmus              # Terminal music player
+    # yt-dlp            # YouTube downloader
+    
+    # System information
+    # neofetch          # System info display
+    
+    # Development tools
+    # gh                # GitHub CLI
+    # docker            # Containerization
+    # lazydocker        # Docker TUI
+    # podman            # Alternative to Docker
+    # gnumake           # Build tool
+    # cmake             # Build system
+    # pkg-config        # Package configuration
+    # tree              # Directory tree viewer
+    # manix             # Search Nix documentation
+    # httpie            # HTTP client
+    
+    # Desktop applications
+    # brave             # Browser
+    # mpv               # Media player
+    # obsidian          # Note taking
+    # krita             # Digital painting
+    # anki              # Flashcards
   ];
-
-  # Global font configuration
-  fonts.fontconfig.enable = true;
-
-  # Global session path additions
-  home.sessionPath = [
-    "$HOME/bin"
-    "$HOME/.local/bin"
-  ];
+  
+  # Note: For GPU acceleration with nixGL, you can manually wrap applications like:
+  # nixVulkanNvidia alacritty
+  # nixGLNvidia <application>
 }

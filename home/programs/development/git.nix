@@ -12,27 +12,28 @@
     # Basic configuration - you can set these via environment variables:
     # export GIT_USER_NAME="Your Name"
     # export GIT_USER_EMAIL="your@email.com"
+    # Or update the defaults below
     userName = 
       let envName = builtins.getEnv "GIT_USER_NAME";
-      in if envName != "" then envName else "username";
+      in if envName != "" then envName else lib.mkDefault "your_username";  # Update this with your username
     
     userEmail = 
       let envEmail = builtins.getEnv "GIT_USER_EMAIL";
-      in if envEmail != "" then envEmail else "username@gmail.com";
+      in if envEmail != "" then envEmail else lib.mkDefault "your.email@example.com";  # Update this with your email
     
     # Git settings
     extraConfig = {
       init = {
-        defaultBranch = "main";
+        defaultBranch = lib.mkDefault "main";
       };
       
       pull = {
-        rebase = false;
+        rebase = lib.mkDefault true;
       };
       
       push = {
         default = "simple";
-        autoSetupRemote = true;
+        autoSetupRemote = lib.mkDefault true;
       };
       
       core = {
@@ -57,17 +58,8 @@
       st = "status";
       co = "checkout";
       br = "branch";
-      ci = "commit";
-      ca = "commit -a";
       cm = "commit -m";
-      cam = "commit -am";
-      df = "diff";
-      dc = "diff --cached";
-      lg = "log --oneline --graph --decorate --all";
-      ll = "log --pretty=format:'%h - %an, %ar : %s'";
       unstage = "reset HEAD --";
-      last = "log -1 HEAD";
-      visual = "!gitk";
     };
     
     # Delta for better diffs (optional)

@@ -64,10 +64,58 @@
       ];
     };
 
-    shellAliases = {
-      lg = "lazygit";
-      lzd = "lazydocker";
-      code = "code --password-store=\"gnome-libsecret\"";
-    };
+    shellAliases = lib.mkMerge [
+      # Directory navigation (use mkDefault to allow overrides)
+      (lib.mkDefault {
+        ll = "ls -la";
+        la = "ls -la";
+        l = "ls -la";
+        ".." = "cd ..";
+        "..." = "cd ../..";
+      })
+      
+      # Non-conflicting aliases
+      {
+        # Safety aliases
+        rm = "rm -i";
+        cp = "cp -i";
+        mv = "mv -i";
+        
+        # Git shortcuts
+        lg = "lazygit";
+        gs = "git status";
+        gl = "git log --oneline";
+        gd = "git diff";
+        ga = "git add";
+        gc = "git commit";
+        gp = "git push";
+        
+        # Development tools
+        lzd = "lazydocker";
+        code = "code --password-store=\"gnome-libsecret\"";
+        
+        # System shortcuts
+        reload = "source ~/.zshrc";
+        cls = "clear";
+        
+        # Nix/Home Manager shortcuts
+        hm-switch = "home-manager switch --flake .";
+        hm-build = "home-manager build --flake .";
+        nix-search = "nix search nixpkgs";
+        
+        # Network and system info
+        myip = "curl ifconfig.me";
+        ports = "ss -tuln";
+        
+        # Quick utilities
+        json = "jq .";
+        
+        # Directory shortcuts
+        dotfiles = "cd ~/.config/home-manager";
+        projects = "cd ~/projects";
+        work = "cd ~/work";
+        dev = "cd ~/development";
+      }
+    ];
   };
 }

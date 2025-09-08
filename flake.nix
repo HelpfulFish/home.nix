@@ -33,8 +33,8 @@
     
     # User configuration
     userConfig = {
-      username = "your_username";  # <-- Change this to your desired username
-      homeDirectory = "/home/your_username"; # <-- Change this to your desired home directory
+      username = "your_username";
+      homeDirectory = "/home/your_username";
     };
     
     # Helper function to create pkgs for a system
@@ -86,7 +86,7 @@
       };
       
       modules = [
-        ./home
+        ./home.nix
       ] ++ modules;
     };
 
@@ -109,7 +109,9 @@
     });
 
     # Apps for `nix run`
-    apps = forAllSystems (system: {
+    apps = forAllSystems (system: let
+      pkgs = mkPkgs system;
+    in {
       default = {
         type = "app";
         program = "${self.homeConfigurations.${userConfig.username}.activationPackage}/activate";
