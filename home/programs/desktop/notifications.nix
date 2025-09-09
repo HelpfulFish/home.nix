@@ -5,8 +5,6 @@
   ...
 }: {
   # Notification system configuration
-  
-  # Dunst notification daemon configuration using Home Manager module
   services.dunst = {
     enable = true;
     settings = {
@@ -16,20 +14,20 @@
         follow = "none";
         
         # Geometry
-        width = 425;
-        height = 300;
+        width = 350;
+        height = 80;
         origin = "top-right";
-        offset = "10x30";
+        offset = "15x40";
         scale = 0;
-        notification_limit = 20;
+        notification_limit = 10;
         
-        # Progress bar
+        # Progress bar - Compact
         progress_bar = true;
-        progress_bar_height = 10;
+        progress_bar_height = 8;
         progress_bar_frame_width = 1;
-        progress_bar_min_width = 150;
-        progress_bar_max_width = 300;
-        progress_bar_corner_radius = 0;
+        progress_bar_min_width = 120;
+        progress_bar_max_width = 280;
+        progress_bar_corner_radius = 4;
         progress_bar_corners = "all";
         
         # Icon settings
@@ -41,17 +39,17 @@
         transparency = 0;
         separator_height = 2;
         padding = 8;
-        horizontal_padding = 8;
-        text_icon_padding = 0;
-        frame_width = 3;
-        frame_color = "#aaaaaa";
+        horizontal_padding = 12;
+        text_icon_padding = 8;
+        frame_width = 1;
+        frame_color = "#30363d";
         gap_size = 0;
-        separator_color = "frame";
+        separator_color = "#21262d";
         sort = true;
         
-        # Text settings - Fixed font name
-        font = "FiraCode Nerd Font 10";
-        line_height = 0;
+        # Text settings
+        font = "FiraCode Nerd Font 8";
+        line_height = 1;
         markup = "full";
         format = "<b>%s</b>\\n%b";
         alignment = "left";
@@ -63,12 +61,12 @@
         hide_duplicate_count = false;
         show_indicators = true;
         
-        # Icon configuration
+        # Icon configuration - Compact
         enable_recursive_icon_lookup = true;
         icon_theme = "Adwaita";
         icon_position = "left";
-        min_icon_size = 32;
-        max_icon_size = 128;
+        min_icon_size = 24;
+        max_icon_size = 32;
         icon_path = "/usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/";
         
         # History
@@ -81,7 +79,8 @@
         always_run_script = true;
         title = "Dunst";
         class = "Dunst";
-        corner_radius = 12;
+        # Compact rounded corners
+        corner_radius = 8;
         corners = "all";
         ignore_dbusclose = false;
         force_xwayland = false;
@@ -97,25 +96,28 @@
         per_monitor_dpi = false;
       };
       
+      # === DARK CYBERPUNK THEME (ACTIVE) ===
       urgency_low = {
-        background = "#1e1e2e";
-        foreground = "#cdd6f4";
+        background = "#0d1117";
+        foreground = "#58a6ff";
+        frame_color = "#21262d";
         timeout = 10;
         default_icon = "dialog-information";
       };
       
       urgency_normal = {
-        background = "#1e1e2e";
-        foreground = "#cdd6f4";
+        background = "#161b22";
+        foreground = "#f0f6fc";
+        frame_color = "#30363d";
         timeout = 10;
         override_pause_level = 30;
         default_icon = "dialog-information";
       };
       
       urgency_critical = {
-        background = "#1e1e2e";
-        foreground = "#cdd6f4";
-        frame_color = "#fab387";
+        background = "#21262d";
+        foreground = "#ff7b72";
+        frame_color = "#da3633";
         timeout = 0;
         override_pause_level = 60;
         default_icon = "dialog-warning";
