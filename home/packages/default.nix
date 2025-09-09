@@ -27,7 +27,6 @@
     i3blocks
     dmenu
     feh # Image viewer and wallpaper setter
-    dunst # Notification daemon
     flameshot # Screenshot tool
     gnome-keyring # Keyring management
 

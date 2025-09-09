@@ -326,12 +326,6 @@ exec --no-startup-id /usr/libexec/gsd-xsettings
 
 exec --no-startup-id xsettingsd
 
-# ----- Notification (dunst) -----
-
-exec --no-startup-id dunst &
-
-# ----- Notification end -----
-
 # ----- Scratchpad -----
 # for_window [class="htop"] move scratchpad, floating enable, move position center
 for_window [class="dropdown"] move scratchpad, floating enable, move position center
