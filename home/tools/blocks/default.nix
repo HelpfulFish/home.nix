@@ -12,5 +12,6 @@
     ./network-traffic.nix
     ./cpu-monitor.nix
     ./disk-io.nix
+    ./vpn-status.nix
   ];
 }

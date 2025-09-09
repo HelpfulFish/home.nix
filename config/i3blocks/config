@@ -58,6 +58,11 @@ command=docker-status
 interval=5
 color=#2496ED  # Docker Blue
 
+[vpn-status]
+command=vpn-status
+interval=5
+color=#FF6B6B  # Red for VPN
+
 [network-latency]
 command=network-latency
 interval=120
