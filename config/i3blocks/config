@@ -1,5 +1,15 @@
 separator_block_width=20
 
+[network-traffic]
+command=network-traffic
+interval=3
+color=#4ECDC4  # Teal for traffic
+
+[disk-io]
+command=disk-io
+interval=3
+color=#9B59B6  # Purple for disk
+
 [audio-device-status]
 command=audio-device-status
 interval=1
@@ -12,14 +22,19 @@ interval=1
 signal=10
 color=#32CD32  # LimeGreen
 
+[cpu-monitor]
+command=cpu-monitor
+interval=5
+color=#FF9500  # Orange for CPU
+
 [memory]
 command=memory
-interval=10
+interval=6
 color=#BA55D3  # MediumOrchid
 
 [gpu-info]
 command=gpu-info
-interval=10
+interval=7
 color=#FFD700  # Gold
 
 [time]
@@ -37,4 +52,14 @@ command=bluetooth-status
 interval=2
 signal=10
 color=#FFFFFF  # White
+
+[docker-status]
+command=docker-status
+interval=5
+color=#2496ED  # Docker Blue
+
+[network-latency]
+command=network-latency
+interval=120
+color=#FF6B6B  # Red for network
 

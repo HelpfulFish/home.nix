@@ -7,5 +7,10 @@
     ./memory.nix
     ./bluetooth-status.nix
     ./gpu-info.nix
+    ./docker-status.nix
+    ./network-latency.nix
+    ./network-traffic.nix
+    ./cpu-monitor.nix
+    ./disk-io.nix
   ];
 }
