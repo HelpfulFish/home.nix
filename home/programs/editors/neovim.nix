@@ -14,21 +14,21 @@
       # LazyVim core
       lua-language-server
       stylua
-      
+
       # Telescope dependencies
       ripgrep
       fd
-      
+
       # Language servers and tools
       nodePackages.typescript-language-server
       nodePackages.eslint
       nodePackages.prettier
       nodePackages.eslint_d
       nodePackages.typescript
-      
+
       # Additional language servers (uncomment as needed)
-      nil                     # Nix LSP
-      nixpkgs-fmt            # Nix formatter
+      nil # Nix LSP
+      nixpkgs-fmt # Nix formatter
       # python3Packages.python-lsp-server  # Python LSP
       # rust-analyzer           # Rust LSP
     ];
@@ -81,11 +81,11 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
-          
+
           # GitHub Copilot
           copilot-lua
           CopilotChat-nvim
-          
+
           # Plugins with custom names
           { name = "LuaSnip"; path = luasnip; }
           { name = "catppuccin"; path = catppuccin-nvim; }
@@ -96,13 +96,13 @@
           { name = "mini.pairs"; path = mini-nvim; }
           { name = "mini.surround"; path = mini-nvim; }
         ];
-        
+
         mkEntryFromDrv = drv:
           if lib.isDerivation drv then
             { name = "${lib.getName drv}"; path = drv; }
           else
             drv;
-            
+
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
       in
       ''
@@ -175,7 +175,7 @@
           lua
           vim
           vimdoc
-          
+
           # Web development
           typescript
           tsx
@@ -184,9 +184,10 @@
           css
           json
           scss
-          
+
           # Other languages (uncomment as needed)
           nix
+          go
           # python
           # rust
           markdown
