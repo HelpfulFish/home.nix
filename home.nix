@@ -28,11 +28,11 @@
   # Personal shell aliases (in addition to those defined in programs/shell/zsh.nix)
   programs.zsh.shellAliases = {
     # Directory shortcuts
-    projects = "cd ~/projects";
     dotfiles = "cd ~/.config/home-manager";
-    
+
     # Development shortcuts  
-    dev = "cd ~/development";
-    work = "cd ~/work";
+    dev-public = "cd ~/Documents/src/public";
+    dev-private = "cd ~/Documents/src/private";
+    dev-local = "cd ~/Documents/src/local";
   };
 }
