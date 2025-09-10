@@ -63,8 +63,20 @@ command=vpn-status
 interval=5
 color=#FF6B6B  # Red for VPN
 
-[network-latency]
-command=network-latency
-interval=120
-color=#FF6B6B  # Red for network
+[audio-device-status]
+command=audio-device-status
+interval=1
+signal=10
+color=#1E90FF  # DodgerBlue
+
+[volume]
+command=volume
+interval=1
+signal=10
+color=#32CD32  # LimeGreen
+
+# [network-latency]
+# command=network-latency
+# interval=120
+# color=#FF6B6B  # Red for network
 

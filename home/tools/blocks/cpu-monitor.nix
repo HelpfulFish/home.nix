@@ -32,13 +32,13 @@ let
     # Add temperature with appropriate icon
     if [ -n "$CPU_TEMP" ]; then
         if [ "$CPU_TEMP" -lt 50 ]; then
-            OUTPUT="CPU: 󰏈 ''${CPU_TEMP}°C"  # Cool
+            OUTPUT="󰏈 ''${CPU_TEMP}°C"  # Cool
         elif [ "$CPU_TEMP" -lt 70 ]; then
-            OUTPUT="CPU: 󱃃 ''${CPU_TEMP}°C"  # Warm
+            OUTPUT="󱃃 ''${CPU_TEMP}°C"  # Warm
         elif [ "$CPU_TEMP" -lt 85 ]; then
-            OUTPUT="CPU: 󰸁 ''${CPU_TEMP}°C"  # Hot
+            OUTPUT="󰸁 ''${CPU_TEMP}°C"  # Hot
         else
-            OUTPUT="CPU: 󱃂 ''${CPU_TEMP}°C"  # Very hot
+            OUTPUT="󱃂 ''${CPU_TEMP}°C"  # Very hot
         fi
     else
         OUTPUT="CPU: 󰏈 N/A"
@@ -51,7 +51,8 @@ let
 
     echo "$OUTPUT"
   '';
-in {
+in
+{
   home.packages = [
     cpu-monitor
   ];
