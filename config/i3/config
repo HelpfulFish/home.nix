@@ -16,17 +16,17 @@ set $mod Mod1
 # Win
 # set $mod Mod4
 
-# color scheme
-set $urgentred      #e53935
-set $white	        #bfc4e0
-set $black          #000000
-set $darkgrey       #383c4a
-set $grey           #b0b5bd
-set $mediumgrey	    #8b8b8b
+# color scheme - Dark Cyberpunk GitHub theme (matching dunst)
+set $urgentred      #ff7b72
+set $white	        #f0f6fc
+set $black          #0d1117
+set $darkgrey       #21262d
+set $grey           #30363d
+set $mediumgrey	    #8b949e
 set $yellowbrown    #e1b700
-set $blacktrans     #000000b2
-set $lavender       #9192bb
-set $darklavender   #3d3973
+set $blacktrans     #161b22e6
+set $lavender       #484f58
+set $darklavender   #1f6feb
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -240,7 +240,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # lock i3
-bindsym $mod+Delete exec --no-startup-id i3lock --color "$darkgrey"
+bindsym $mod+Delete exec --no-startup-id i3lock --color "$black"
 # shutdown pc
 bindsym $mod+Pause exec --no-startup-id systemctl poweroff
 
@@ -282,22 +282,22 @@ bar {
 
         colors {
 		    separator          $white
-		    background         $blacktrans
+		    background         $black
 		    statusline         $white
 
     # selector border|background|text|indicator
-		focused_workspace	$darklavender       	$darklavender  	$white   	$blacktrans
-		active_workspace	$blacktrans             $blacktrans     $white  	$blacktrans
-		inactive_workspace	$blacktrans    		$blacktrans     $white		$blacktrans
-		urgent_workspace	$urgentred	    	$urgentred	$white		$blacktranskkk
+		focused_workspace	$lavender       	$lavender  	$white   	$grey
+		active_workspace	$grey               $grey        $white  	$grey
+		inactive_workspace	$darkgrey    	$darkgrey     $mediumgrey	$darkgrey
+		urgent_workspace	$urgentred	    	$urgentred	$white		$urgentred
 	}
 }
 
 # class                 border|backgr|text|indicator|child_border
-client.focused		    	$darklavender	$darklavender	$white		$lavender	$darklavender
-client.unfocused	    	$black	$black	$lavender		$darkgrey	$darkgrey
-client.focused_inactive		$black	$black	$lavender		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+client.focused		    	$lavender	$lavender	$white		$white	$lavender
+client.unfocused	    	$darkgrey	$darkgrey	$mediumgrey		$darkgrey	$darkgrey
+client.focused_inactive		$grey	$grey	$white		$grey		$grey
+client.urgent		    	$urgentred	$urgentred	$white		$urgentred	$urgentred
 
 # gaps between windows
 gaps inner 5
