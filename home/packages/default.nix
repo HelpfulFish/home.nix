@@ -30,6 +30,8 @@
     flameshot # Screenshot tool
     gnome-keyring # Keyring management
 
+    # === AUDIO ===
+    playerctl
 
 
     # === OPTIONAL PACKAGES (uncomment as needed) ===
