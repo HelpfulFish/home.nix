@@ -1,11 +1,51 @@
+# Nix build outputs
+result
+result-*
+
+# Nix development environments
+.direnv/
+.devenv/
+
+# Environment configuration (contains user-specific paths)
+local.conf
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Home Manager generations
+.hm-backup/
+
+# Cache directories
+.cache/
+
+# Legacy ignores
 tt.*
 .tests
 doc/tags
 debug
 .repro
 foo.*
-*.log
 data
 
 # Shells
 shells/*
+
+example/

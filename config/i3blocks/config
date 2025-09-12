@@ -1,0 +1,70 @@
+separator_block_width=20
+
+[network-traffic]
+command=network-traffic
+interval=3
+color=#58a6ff  # GitHub blue (primary accent)
+
+[disk-io]
+command=disk-io
+interval=3
+color=#f85149  # GitHub red
+
+[cpu-monitor]
+command=cpu-monitor
+interval=5
+color=#ffa657  # GitHub orange
+
+[memory]
+command=memory
+interval=6
+color=#a5a5ff  # GitHub purple/lavender
+
+[gpu-info]
+command=gpu-info
+interval=7
+color=#e3b341  # GitHub yellow
+
+[time]
+command=current-time
+interval=60
+color=#f0f6fc  # GitHub foreground (white)
+
+[date]
+command=calendar
+interval=once
+color=#8b949e  # GitHub muted
+
+[bluetooth]
+command=bluetooth-status
+interval=2
+signal=10
+color=#58a6ff  # GitHub blue
+
+[docker-status]
+command=docker-status
+interval=5
+color=#1f6feb  # GitHub dark blue
+
+[vpn-status]
+command=vpn-status
+interval=5
+color=#f85149  # GitHub red
+
+[audio-device-status]
+command=audio-device-status
+interval=1
+signal=10
+color=#56d364  # GitHub green
+
+[volume]
+command=volume
+interval=1
+signal=10
+color=#56d364  # GitHub green
+
+# [network-latency]
+# command=network-latency
+# interval=120
+# color=#f85149  # GitHub red for network issues
+
