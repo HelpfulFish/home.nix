@@ -51,7 +51,7 @@
 
     # Media tools
     # cmus              # Terminal music player
-    # yt-dlp            # YouTube downloader
+    # yt-dlp              # YouTube downloader for mpv
 
     # System information
     # neofetch          # System info display
@@ -70,10 +70,15 @@
 
     # Desktop applications
     # brave             # Browser
-    mpv               # Media player
+    mpv                 # Media player
     # obsidian          # Note taking
     # krita             # Digital painting
-    # anki              # Flashcards
+    
+    # === NIXGL WRAPPED APPLICATIONS ===
+    # These are automatically wrapped with nixGL via overlay
+    anki-nixgl          # GPU accelerated Anki
+    alacritty-nixgl     # GPU accelerated Alacritty (if needed)
+    # krita-nixgl       # GPU accelerated Krita (if needed)
   ];
 
   # Note: For GPU acceleration with nixGL, you can manually wrap applications like:

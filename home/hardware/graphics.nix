@@ -8,15 +8,12 @@
   # NixGL configuration for GPU support on non-NixOS systems
   # Documentation: https://github.com/nix-community/nixGL
   
-  # Make nixGL packages available without the problematic time dependency
-  home.packages = with nixgl; [
-    nixGLNvidia
-    # nixVulkanNvidia  # Commented out due to currentTime issue
-  ];
+  # Install nixGL globally via nix profile (run this manually):
+  # nix profile install github:nix-community/nixGL --impure
   
   # Session variables for GPU acceleration
   home.sessionVariables = {
-    # Uncomment if using Anki with QT issues
-    # QT_XCB_GL_INTEGRATION = "none";
+    # Fix for Anki QT/GLX issues
+    QT_XCB_GL_INTEGRATION = "none";
   };
 }

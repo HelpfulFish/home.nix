@@ -112,6 +112,9 @@
         projects = "cd ~/projects";
         work = "cd ~/work";
         dev = "cd ~/development";
+        
+        # Quick nixGL wrapper for other apps
+        ngl = "nixGL";  # ngl <app> for manual wrapping
       }
     ];
   };

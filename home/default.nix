@@ -21,8 +21,8 @@
     # Custom tools and scripts (i3blocks, utilities)
     ./tools
     
-    # Hardware-specific configurations (temporarily disabled)
-    # ./hardware  # Disabled due to nixGL issues
+    # Hardware-specific configurations
+    ./hardware
   ];
 
   # Session path for custom binaries
