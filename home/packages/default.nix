@@ -70,7 +70,7 @@
 
     # Desktop applications
     # brave             # Browser
-    # mpv               # Media player
+    mpv               # Media player
     # obsidian          # Note taking
     # krita             # Digital painting
     # anki              # Flashcards
