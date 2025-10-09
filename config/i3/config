@@ -307,7 +307,7 @@ gaps outer 5
 exec_always --no-startup-id xrandr --output DP-4 --mode 3440x1440 --rate 143.92 --primary --output DP-1 --mode 1920x1080 --rate 60 --above DP-4
 
 # wallpaper using feh. Use flag to set random bg from directory (--randomize)
-exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/car-on-roof.jpg
+exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/neon.jpg
 # exec_always --no-startup-id feh --randomize --bg-fill /home/$USER/.wallpapers/*
 
 
