@@ -33,6 +33,8 @@
     # === AUDIO ===
     playerctl
 
+    # === NETWORKING ===
+    networkmanagerapplet
 
     # === OPTIONAL PACKAGES (uncomment as needed) ===
     # System monitoring
