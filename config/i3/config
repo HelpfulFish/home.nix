@@ -168,15 +168,15 @@ bindsym $mod+ctrl+n exec --no-startup-id $brave
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # Icons: https://fontawesome.com/search?o=r&m=free
-set $ws1 "1: Browser 󰖟 "
-set $ws2 "2: Code  "
-set $ws3 "3: Misc ? "
-set $ws4 "4: Steam  "
-set $ws5 "5: Games  "
-set $ws6 "6"
+set $ws1 "1: 󰖟 "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6: Misc  "
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9: Art 󰏫"
+set $ws8 "8:  "
+set $ws9 "9:  "
 set $ws10 "10: Top"
 
 # 1-9 = bottom monitor
@@ -221,17 +221,19 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 assign[class="firefox"] $ws1
 assign[class="brave-browser"] $ws1
-assign[class="Code"] $ws2
-assign[class="Anki"] $ws3
-assign[class="obsidian"] $ws3
-assign[class="Virt-manager"] $ws3
-assign[class="^steam$"] $ws4
-assign[class="^steam_app_\d+$"] $ws5
-assign[class="cs2"] $ws5
-assign[class="SDL Application"] $ws5
-assign[class="dwarfort"] $ws5
-assign[class="dota2"] $ws5
-assign[class="krita"] $ws9
+assign[class="konsole"] $ws2
+assign[class="Code"] $ws3
+assign[class="Anki"] $ws6
+assign[class="obsidian"] $ws6
+assign[class="Virt-manager"] $ws6
+assign[class="^steam$"] $ws5
+assign[class="^steam_app_\d+$"] $ws6
+assign[class="cs2"] $ws6
+assign[class="SDL Application"] $ws6
+assign[class="dwarfort"] $ws6
+assign[class="dota2"] $ws6
+assign[class="krita"] $ws8
+assign[class="KeePassXC"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
