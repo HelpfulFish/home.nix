@@ -95,10 +95,10 @@ bindsym $mod+Return exec /usr/bind/konsole
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$black" -sb "$darklavender" -nf "$white"
+bindsym $mod+n exec --no-startup-id dmenu_run -nb "$black" -sb "$darklavender" -nf "$white"
 
 # start dmenu for flatpak apps
-bindsym $mod+Shift+d exec --no-startup-id dmenu-flatpak -nb "$black" -sb "$darklavender" -nf "$white"
+bindsym $mod+Shift+n exec --no-startup-id dmenu-flatpak -nb "$black" -sb "$darklavender" -nf "$white"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

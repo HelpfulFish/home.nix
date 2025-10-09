@@ -5,8 +5,8 @@
     ./nodejs.nix
     ./dotnet.nix
     ./golang.nix
+    ./rust.nix
     # ./python.nix
-    # ./rust.nix
     # ./java.nix       # Add when needed
   ];
 }
