@@ -19,4 +19,14 @@ final: prev: {
       exit 1
     fi
   '';
+  
+  # Simple nixGL wrapper script for picom
+  picom-nixgl = final.writeShellScriptBin "picom-nixgl" ''
+    if command -v nixGL >/dev/null 2>&1; then
+      exec nixGL ${prev.picom}/bin/picom "$@"
+    else
+      echo "nixGL not found. Install with: nix profile install github:nix-community/nixGL --impure"
+      exit 1
+    fi
+  '';
 }
