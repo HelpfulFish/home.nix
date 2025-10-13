@@ -221,7 +221,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
 assign[class="firefox"] $ws1
-assign[class="Brave-browser"] $ws1
+assign[class="Brave-browserbrave-browser"] $ws1
 assign[class="konsole"] $ws2
 assign[class="Code"] $ws3
 assign[class="Anki"] $ws6
@@ -348,15 +348,15 @@ bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 # Next=pgdn
 
 # Fullscreen (no clipboard on save)
-bindsym $mod+Shift+Prior exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
+# bindsym $mod+Shift+apostrophe exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
 
 # GUI to select (clipboard on save)
-bindsym $mod+Shift+Next exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
+bindsym $mod+Shift+backslash exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
 
 # ----- Screenshot end -----
 
 # ----- Wacom One (Drawing tabet) ----- 
-exec --no-startup-id xsetwacom --set "11" MapToOutput HEAD-0 
+exec --no-startup-id xsetwacom --set "11" MapToOutput HEAD-0
 exec --no-startup-id xsetwacom --set "11" Rotate half
 
 # ----- Wacom One (Drawing tabet) end ----- 
