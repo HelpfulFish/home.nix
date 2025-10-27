@@ -70,15 +70,15 @@
 
     # Desktop applications
     # brave             # Browser
-    mpv                 # Media player
-    # obsidian          # Note taking
+    mpv # Media player
+    obsidian # Note taking
     # krita             # Digital painting
-    
+
     # === NIXGL WRAPPED APPLICATIONS ===
     # These are automatically wrapped with nixGL via overlay
-    anki-nixgl          # GPU accelerated Anki
-    alacritty-nixgl     # GPU accelerated Alacritty (if needed)
-    picom-nixgl         # GPU accelerated picom compositor
+    anki-nixgl # GPU accelerated Anki
+    alacritty-nixgl # GPU accelerated Alacritty (if needed)
+    picom-nixgl # GPU accelerated picom compositor
     # krita-nixgl       # GPU accelerated Krita (if needed)
   ];
 

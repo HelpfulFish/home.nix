@@ -57,6 +57,10 @@
       "100:class_g = 'Brave-browser'",
       "100:class_g = 'chromium'",
       "100:class_g = 'Chromium'"
+      
+      # Burrito overlay - keep at 100% opacity (let the app handle transparency)
+      # "100:class_g = 'Burrito'",
+      # "100:class_g = 'Godot_Engine'"
     ];
     
     # Backend
@@ -68,5 +72,15 @@
     mark-ovredir-focused = true;
     detect-rounded-corners = true;
     detect-client-opacity = true;
+    
+    # Window type settings for overlays
+    wintypes = {
+      # Keep tooltips and popups from overlays visible
+      tooltip = { fade = true; shadow = false; opacity = 0.9; focus = true; };
+      popup_menu = { fade = true; shadow = false; opacity = 0.9; };
+      dropdown_menu = { fade = true; shadow = false; opacity = 0.9; };
+      # Utility windows (like overlays) - no shadows, keep visible
+      utility = { fade = true; shadow = false; focus = true; };
+    };
   '';
 }
