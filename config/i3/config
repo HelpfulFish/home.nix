@@ -349,29 +349,23 @@ bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 # ----- Scratchpad end -----
 
 # ----- Game Overlay Rules -----
-# Guild Wars 2 Burrito overlay - AGGRESSIVELY force it to bottom monitor and always on top
-# Position format: move absolute position X Y (where X=left/right, Y=up/down)
-# Negative values move left/up, positive values move right/down
+# Guild Wars 2 Burrito overlay
+
+
+# HOW TO USE:
+# - Spawn Burrito overlay (it will spawn on top monitor lol)
+# - Click taco icon (it should focus the overlay)
+# - Push to bottom: $mod+Shift+2 (any workspace on bottom monitor)
+# - Make it unfloating: $mod+Shift+space
+# - Make it floaing again: $mod+Shift+space
+# - Good to go!
+
+
+# NOTE: gaps is enabled, the alignment will be slightly wonky but it works!
+
 for_window [class="Burrito"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -850 -150, focus
-for_window [class="Godot_Engine"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -200 -150, focus
-for_window [title="Burrito"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -850 -150, focus
+for_window [class="Godot_Engine"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -850 -150, focus
 
-# POSITIONING GUIDE:
-# Current: -200 -100 (200px left, 100px up from center)
-# More left: increase first number (try -300, -400)  
-# More right: decrease first number (try -100, 0)
-# More up: increase second number (try -200, -300)
-# More down: decrease second number (try -50, 0)
-
-# Nuclear option - continuously force Burrito to stay on top
-exec_always --no-startup-id "sleep 3 && i3-msg '[class=\"Burrito\"] move to output DP-4, focus'"
-exec_always --no-startup-id "sleep 3 && i3-msg '[class=\"Godot_Engine\"] move to output DP-4, focus'"
-
-# Keep refocusing Burrito every few seconds (uncomment if needed)
-# exec_always --no-startup-id "while true; do sleep 5; i3-msg '[class=\"Burrito\"] focus' 2>/dev/null; done &"
-
-# Optional: If you want Burrito to be positioned in a specific area
-# for_window [class="Burrito"] floating enable, sticky enable, border none, resize set 400 600, move position 0 0
 
 # ----- Game Overlay Rules end -----
 
