@@ -55,12 +55,12 @@ in {
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "vim";
-          publisher = "vscodevim";
-          version = "1.27.3";
-          sha256 = "sha256-zshuABicdkT52Nqj1L2RrfMziBRgO+R15fM32SCnyXI=";
-        }
+        # {
+        #   name = "vim";
+        #   publisher = "vscodevim";
+        #   version = "1.27.3";
+        #   sha256 = "sha256-zshuABicdkT52Nqj1L2RrfMziBRgO+R15fM32SCnyXI=";
+        # }
       ];
     };
   };

@@ -23,6 +23,8 @@
     joplin-desktop
     ollama # AI and ML
 
+    picom # Compositor for X11
+
     # === WINDOW MANAGER & DESKTOP ===
     i3blocks
     dmenu
@@ -78,7 +80,7 @@
     # These are automatically wrapped with nixGL via overlay
     anki-nixgl # GPU accelerated Anki
     alacritty-nixgl # GPU accelerated Alacritty (if needed)
-    picom-nixgl # GPU accelerated picom compositor
+    # picom-nixgl # GPU accelerated picom compositor
     # krita-nixgl       # GPU accelerated Krita (if needed)
   ];
 
