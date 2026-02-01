@@ -23,6 +23,8 @@
     joplin-desktop
     ollama # AI and ML
 
+    picom # Compositor for X11
+
     # === WINDOW MANAGER & DESKTOP ===
     i3blocks
     dmenu
@@ -33,6 +35,8 @@
     # === AUDIO ===
     playerctl
 
+    # === NETWORKING ===
+    networkmanagerapplet
 
     # === OPTIONAL PACKAGES (uncomment as needed) ===
     # System monitoring
@@ -49,7 +53,7 @@
 
     # Media tools
     # cmus              # Terminal music player
-    # yt-dlp            # YouTube downloader
+    # yt-dlp              # YouTube downloader for mpv
 
     # System information
     # neofetch          # System info display
@@ -68,10 +72,16 @@
 
     # Desktop applications
     # brave             # Browser
-    # mpv               # Media player
-    # obsidian          # Note taking
+    mpv # Media player
+    obsidian # Note taking
     # krita             # Digital painting
-    # anki              # Flashcards
+
+    # === NIXGL WRAPPED APPLICATIONS ===
+    # These are automatically wrapped with nixGL via overlay
+    anki-nixgl # GPU accelerated Anki
+    alacritty-nixgl # GPU accelerated Alacritty (if needed)
+    # picom-nixgl # GPU accelerated picom compositor
+    # krita-nixgl       # GPU accelerated Krita (if needed)
   ];
 
   # Note: For GPU acceleration with nixGL, you can manually wrap applications like:

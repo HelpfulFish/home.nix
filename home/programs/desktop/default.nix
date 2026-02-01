@@ -8,6 +8,7 @@
     ./i3.nix
     ./terminal.nix
     ./notifications.nix
+    ./picom.nix
   ];
 
   # Desktop environment file configurations

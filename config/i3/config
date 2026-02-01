@@ -52,6 +52,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Start picom compositor with GPU acceleration
+# TODO: transparecy breaks firefox on load
+#
+# exec --no-startup-id picom-nixgl --config ~/.config/picom/picom.conf
+
 # i3status
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
@@ -74,7 +79,7 @@ bindsym $mod+F2 exec --no-startup-id audio-output --headphones
 bindsym $mod+F3 exec --no-startup-id audio-output --bluetooth
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -89,16 +94,17 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec alacritty -e tmux attach
-bindsym $mod+Return exec /usr/bind/konsole
+bindsym $mod+Return exec alacritty-nixgl
+# bindsym $mod+Return exec /usr/bin/konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "$black" -sb "$darklavender" -nf "$white"
+bindsym $mod+n exec --no-startup-id dmenu_run -nb "$black" -sb "$darklavender" -nf "$white"
 
 # start dmenu for flatpak apps
-bindsym $mod+Shift+d exec --no-startup-id dmenu-flatpak -nb "$black" -sb "$darklavender" -nf "$white"
+bindsym $mod+Shift+n exec --no-startup-id dmenu-flatpak -nb "$black" -sb "$darklavender" -nf "$white"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -112,10 +118,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -124,10 +130,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -168,15 +174,15 @@ bindsym $mod+ctrl+n exec --no-startup-id $brave
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 # Icons: https://fontawesome.com/search?o=r&m=free
-set $ws1 "1: Browser 󰖟 "
-set $ws2 "2: Code  "
-set $ws3 "3: Misc ? "
-set $ws4 "4: Steam  "
-set $ws5 "5: Games  "
-set $ws6 "6"
+set $ws1 "1: 󰖟 "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6: Misc  "
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9: Art 󰏫"
+set $ws8 "8:  "
+set $ws9 "9:  "
 set $ws10 "10: Top"
 
 # 1-9 = bottom monitor
@@ -220,18 +226,21 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # bindsym $mod+Shift+x exec xprop WM_CLASS | awk '{print $4}' | xclip -selection c
 
 assign[class="firefox"] $ws1
-assign[class="brave-browser"] $ws1
-assign[class="Code"] $ws2
-assign[class="Anki"] $ws3
-assign[class="obsidian"] $ws3
-assign[class="Virt-manager"] $ws3
+assign[class="Brave-browser"] $ws1
+assign[class="konsole"] $ws2
+assign[class="Alacritty"] $ws2
+assign[class="Code"] $ws3
+assign[class="Anki"] $ws6
+assign[class="obsidian"] $ws6
+assign[class="Virt-manager"] $ws6
 assign[class="^steam$"] $ws4
 assign[class="^steam_app_\d+$"] $ws5
 assign[class="cs2"] $ws5
 assign[class="SDL Application"] $ws5
 assign[class="dwarfort"] $ws5
 assign[class="dota2"] $ws5
-assign[class="krita"] $ws9
+assign[class="krita"] $ws8
+assign[class="KeePassXC"] $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -307,7 +316,7 @@ gaps outer 5
 exec_always --no-startup-id xrandr --output DP-4 --mode 3440x1440 --rate 143.92 --primary --output DP-1 --mode 1920x1080 --rate 60 --above DP-4
 
 # wallpaper using feh. Use flag to set random bg from directory (--randomize)
-exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/car-on-roof.jpg
+exec_always --no-startup-id feh --bg-fill /home/$USER/.wallpapers/neon.png
 # exec_always --no-startup-id feh --randomize --bg-fill /home/$USER/.wallpapers/*
 
 
@@ -328,16 +337,40 @@ exec --no-startup-id xsettingsd
 
 # ----- Scratchpad -----
 # for_window [class="htop"] move scratchpad, floating enable, move position center
-for_window [class="dropdown"] move scratchpad, floating enable, move position center
+# for_window [class="dropdown"] move scratchpad, floating enable, move position center
 
 # exec --no-startup-id alacritty --class htop,htop --title htop -e htop
 # exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown
-exec --no-startup-id alacritty --class dropdown,dropdown --title dropdown -e tmux
+# exec --no-startup-id alacritty-nixgl --class dropdown,dropdown --title dropdown -e tmux
 
 # bindsym $mod+Shift+i [class="htop"] scratchpad show
-bindsym $mod+Shift+i [class="dropdown"] scratchpad show
+# bindsym $mod+Shift+i [class="dropdown"] scratchpad show
+
+# Disable moving windows with Alt + left mouse
+bindsym Mod1+button1 nop
 
 # ----- Scratchpad end -----
+
+# ----- Game Overlay Rules -----
+# Guild Wars 2 Burrito overlay
+
+
+# HOW TO USE:
+# - Spawn Burrito overlay (it will spawn on top monitor lol)
+# - Click taco icon (it should focus the overlay)
+# - Push to bottom: $mod+Shift+2 (any workspace on bottom monitor)
+# - Make it unfloating: $mod+Shift+space
+# - Make it floaing again: $mod+Shift+space
+# - Good to go!
+
+
+# NOTE: gaps is enabled, the alignment will be slightly wonky but it works!
+
+for_window [class="Burrito"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -850 -150, focus
+for_window [class="Godot_Engine"] move to workspace $ws5, move to output DP-4, floating enable, sticky enable, border none, resize set 3440 1440, move absolute position -850 -150, focus
+
+
+# ----- Game Overlay Rules end -----
 
 # ----- Screenshot (flameshot) ----- 
 
@@ -345,15 +378,15 @@ bindsym $mod+Shift+i [class="dropdown"] scratchpad show
 # Next=pgdn
 
 # Fullscreen (no clipboard on save)
-bindsym $mod+Shift+Prior exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
+# bindsym $mod+Shift+apostrophe exec --no-startup-id flameshot screen -p ~/Pictures/screenshots
 
 # GUI to select (clipboard on save)
-bindsym $mod+Shift+Next exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
+bindsym $mod+Shift+backslash exec --no-startup-id flameshot gui -p ~/Pictures/screenshots && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n 1)
 
 # ----- Screenshot end -----
 
 # ----- Wacom One (Drawing tabet) ----- 
-exec --no-startup-id xsetwacom --set "11" MapToOutput HEAD-0 
+exec --no-startup-id xsetwacom --set "11" MapToOutput HEAD-0
 exec --no-startup-id xsetwacom --set "11" Rotate half
 
 # ----- Wacom One (Drawing tabet) end ----- 

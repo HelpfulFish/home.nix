@@ -1,10 +1,12 @@
 {
+  config,
   pkgs,
   lib,
   myLib ? null,
   ...
 }: {
   programs.zsh = {
+    dotDir = "${config.xdg.configHome}/zsh";
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -112,6 +114,9 @@
         projects = "cd ~/projects";
         work = "cd ~/work";
         dev = "cd ~/development";
+        
+        # Quick nixGL wrapper for other apps
+        ngl = "nixGL";  # ngl <app> for manual wrapping
       }
     ];
   };
